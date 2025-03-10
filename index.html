@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanay Dalal - Portfolio</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #f5f5f5;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #e9b872, #d88c65, #a85751);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e9b872;
+        }
+        p {
+            margin-bottom: 1.5rem;
+        }
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(232, 184, 114, 0.2);
+        }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        .skill {
+            padding: 0.75rem;
+            background-color: rgba(232, 184, 114, 0.1);
+            border-radius: 4px;
+            text-align: center;
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project {
+            padding: 1.5rem;
+            background-color: #222;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+        }
+        .project h3 {
+            color: #d88c65;
+            margin-top: 0;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(232, 184, 114, 0.2);
+            color: #e9b872;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #2a2a2a;
+            color: #888;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: #d88c65;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #e9b872;
+        }
+        @media (max-width: 768px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tanay Dalal</h1>
+            <p>Software Engineer with expertise in cloud technologies and full-stack development</p>
+        </header>
+
+        <section class="section">
+            <h2>About Me</h2>
+            <p>
+                I'm a dedicated Software Engineer with a strong background in cloud technologies and full-stack development.
+                My technical expertise spans AWS cloud services, API development, microservices architecture, and database design.
+                I'm proficient in Java, Python, JavaScript, and various frameworks including Spring Boot.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill">AWS</div>
+                <div class="skill">Java</div>
+                <div class="skill">Python</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">React</div>
+                <div class="skill">Next.js</div>
+                <div class="skill">Spring Boot</div>
+                <div class="skill">Docker</div>
+                <div class="skill">Kubernetes</div>
+                <div class="skill">MongoDB</div>
+                <div class="skill">PostgreSQL</div>
+                <div class="skill">CI/CD</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <h3>Cloud-Native Application</h3>
+                    <p>Developed a scalable microservices architecture using AWS ECS, API Gateway, and Lambda functions.</p>
+                    <div class="tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Terraform</span>
+                    </div>
+                </div>
+                <div class="project">
+                    <h3>Data Analytics Platform</h3>
+                    <p>Built a real-time analytics dashboard using Python, AWS Kinesis, and React for visualizing customer insights.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">React</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project">
+                    <h3>E-Commerce Platform</h3>
+                    <p>Developed a full-stack e-commerce solution with secure payment processing, inventory management, and customer analytics.</p>
+                    <div class="tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">React</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me for collaboration or opportunities.</p>
+            <p>Email: tanay.dalal@example.com</p>
+            <div class="social-links">
+                <a href="https://github.com/tdalal17" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/tanay-dalal" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 Tanay Dalal. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
