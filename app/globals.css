@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Mode Colors */
+    --bg-primary: 37 100% 97%;      /* #FFF8F0 (Warm White) */
+    --bg-secondary: 33 50% 92%;     /* #F5EBE0 (Soft Ivory) */
+    --bg-tertiary: 30 40% 84%;      /* #E8D5C4 (Muted Terracotta) */
+    --bg-quaternary: 27 33% 72%;    /* #D0B49F (Soft Caramel) */
+    
+    --text-primary: 28 33% 20%;     /* #433220 (Deep Oak) */
+    --text-secondary: 27 21% 34%;   /* #6B5744 (Mocha) */
+    --text-accent: 20 35% 46%;      /* #A06B4E (Terracotta) */
+    
+    /* Enhanced color variations */
+    --primary-light: 20 35% 51%;    /* Slightly lighter terracotta for hover states */
+    --primary-dark: 20 35% 41%;     /* Slightly darker terracotta for active states */
+    --accent-light: 30 40% 89%;     /* Lighter accent for hover effects */
+    --accent-muted: 30 40% 84% / 0.5; /* Semi-transparent accent */
+    
+    /* System Variables Mapped to Our Palette */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --card: var(--bg-secondary);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-primary);
+    --popover-foreground: var(--text-primary);
+    --primary: 20 35% 46%;          /* #A06B4E (Terracotta) */
+    --primary-foreground: 37 100% 97%;
+    --secondary: 27 33% 72%;        /* #D0B49F (Soft Caramel) */
+    --secondary-foreground: 28 33% 20%;
+    --muted: var(--bg-secondary);
+    --muted-foreground: var(--text-secondary);
+    --accent: 30 40% 84%;           /* #E8D5C4 (Muted Terracotta) */
+    --accent-foreground: var(--text-primary);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 40% 84%;
+    --input: 33 50% 92%;
+    --ring: 20 35% 46%;
+    --radius: 0.5rem;
+    
+    /* RGB values for JavaScript manipulation */
+    --primary-rgb: 160, 107, 78;
+    --secondary-rgb: 208, 180, 159;
+    --accent-rgb: 232, 213, 196;
+    
+    /* Font families */
+    --font-sans: var(--font-inter);
+    --font-heading: var(--font-sora);
+  }
+
+  .dark {
+    /* Dark Mode Colors - Updated to match our new palette */
+    --bg-primary: 34 15% 9%;       /* #1B1814 (Dark wood brown) */
+    --bg-secondary: 34 12% 11%;    /* #211D19 (Slightly lighter brown) */
+    --bg-tertiary: 33 14% 15%;     /* #2A251F (Highlight brown) */
+    --bg-quaternary: 33 16% 19%;   /* #332E27 (Accent brown) */
+    
+    --text-primary: 33 50% 92%;    /* #F5EBE0 (Soft ivory) */
+    --text-secondary: 27 33% 72%;  /* #D0B49F (Soft caramel) */
+    --text-accent: 30 21% 54%;     /* #9C8979 (Mocha) */
+    
+    /* Enhanced color variations */
+    --primary-light: 20 35% 56%;   /* Lighter terracotta for dark mode hover */
+    --primary-dark: 20 35% 46%;    /* #A06B4E for active states */
+    --accent-light: 33 50% 92%;    /* Soft ivory for hover effects */
+    --accent-muted: 27 33% 72% / 0.5; /* Semi-transparent accent */
+    
+    /* System Variables Mapped to Our Palette */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --card: var(--bg-secondary);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-primary);
+    --popover-foreground: var(--text-primary);
+    --primary: 20 35% 46%;         /* #A06B4E (Terracotta) - Same as light mode */
+    --primary-foreground: 33 50% 92%;
+    --secondary: 27 33% 72%;       /* #D0B49F (Soft Caramel) - Same as light mode */
+    --secondary-foreground: 33 50% 92%;
+    --muted: var(--bg-secondary);
+    --muted-foreground: var(--text-secondary);
+    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) - Same as light mode */
+    --accent-foreground: var(--text-primary);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: var(--bg-tertiary);
+    --input: var(--bg-tertiary);
+    --ring: 20 35% 46%;
+    
+    /* RGB values for JavaScript manipulation */
+    --primary-rgb: 160, 107, 78;
+    --secondary-rgb: 208, 180, 159;
+    --accent-rgb: 232, 213, 196;
+  }
+}
+
+/* Base styles */
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: var(--font-sans);
+}
+
+/* Typography settings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: 3rem;
+  @apply mb-6;
+}
+
+h2 {
+  font-size: 2.25rem;
+  @apply mb-4;
+}
+
+h3 {
+  font-size: 1.75rem;
+  @apply mb-3;
+}
+
+h4 {
+  font-size: 1.5rem;
+  @apply mb-2;
+}
+
+h5 {
+  font-size: 1.25rem;
+  @apply mb-2;
+}
+
+h6 {
+  font-size: 1.125rem;
+  @apply mb-2;
+}
+
+p {
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  @apply mb-4;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@layer utilities {
+  .bg-dot-pattern {
+    background-size: 20px 20px;
+    background-image: radial-gradient(hsl(var(--foreground)/0.07) 1px, transparent 1px);
+    background-color: hsl(var(--background));
+    opacity: 1;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-primary/90 to-primary bg-clip-text text-transparent;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+}
+
