@@ -21,3 +21,7 @@ The deployment workflow:
 2. Exports static files to the `out` directory
 3. Deploys those files to the `gh-pages` branch
 4. GitHub Pages serves the site from the `gh-pages` branch
+
+## Trigger Build
+
+This update will trigger a new build and deployment.
