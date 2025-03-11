@@ -11,6 +11,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+# Set permissions for the GITHUB_TOKEN
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # Build and deploy job
@@ -23,6 +29,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       # Setup Node.js environment
       - name: Setup Node.js
@@ -52,3 +60,4 @@ jobs:
           folder: out
           branch: gh-pages
           clean: true
+          token: ${{ secrets.GITHUB_TOKEN }}
