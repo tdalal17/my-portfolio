@@ -15,3 +15,9 @@ npm run dev
 ## Deployment
 
 This site is automatically deployed to GitHub Pages using GitHub Actions.
+
+The deployment workflow:
+1. Builds the Next.js application
+2. Exports static files to the `out` directory
+3. Deploys those files to the `gh-pages` branch
+4. GitHub Pages serves the site from the `gh-pages` branch
