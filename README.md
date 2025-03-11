@@ -1,6 +1,6 @@
 # Portfolio Website
 
-Visit my portfolio at: https://tdalal17.github.io/my-portfolio/
+A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Development
 
@@ -12,16 +12,10 @@ To run the development server:
 npm run dev
 ```
 
-## Deployment
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-This site is automatically deployed to GitHub Pages using GitHub Actions.
+## Features
 
-The deployment workflow:
-1. Builds the Next.js application
-2. Exports static files to the `out` directory
-3. Deploys those files to the `gh-pages` branch
-4. GitHub Pages serves the site from the `gh-pages` branch
-
-## Trigger Build
-
-This update will trigger a new build and deployment.
+- Modern UI with responsive design
+- Built with Next.js, TypeScript, and Tailwind CSS
+- Custom components and animations
