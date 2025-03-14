@@ -1,34 +1,45 @@
-name: Deploy to GitHub Pages
+# .github/workflows/deploy.yml
+
+name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-  workflow_dispatch:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Allow only one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Node
+        
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: npm
+          node-version: '18'
+          
+      # Use npm install instead of npm ci to generate a new package-lock.json
       - name: Install dependencies
-        run: npm ci
-      - name: Build
+        run: npm install
+        
+      - name: Build Next.js site
         run: npm run build
+        env:
+          NODE_ENV: production
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -43,4 +54,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
