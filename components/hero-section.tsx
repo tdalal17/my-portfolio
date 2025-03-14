@@ -24,10 +24,12 @@ export function HeroSection({
   profileImage = "/Tanay-prfile.jpg"
 }: HeroSectionProps) {
   const [imageError, setImageError] = useState(false)
+  const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
+  const imgSrc = `${basePath}${profileImage}`
   
   // Handle image error
   const handleImageError = () => {
-    console.error("Failed to load profile image:", profileImage)
+    console.error("Failed to load profile image:", imgSrc)
     setImageError(true)
   }
   
@@ -48,7 +50,7 @@ export function HeroSection({
             <div className="space-y-3">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
                 <span className="relative flex h-2 w-2 mr-2">
-                  <span className="inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  <span className="inline-flex rounded-full h-2 w-2 bg-primary animate-pulse"></span>
                 </span>
                 Available for new opportunities
               </div>
@@ -83,7 +85,7 @@ export function HeroSection({
                 className="border-primary/20 hover:border-primary/40"
                 size="lg"
               >
-                <Link href="/Tanay.Dalal.pdf" target="_blank" download className="flex items-center">
+                <Link href={`${basePath}/Tanay.Dalal.pdf`} target="_blank" download className="flex items-center">
                   <span>Download Resume</span>
                   <Download className="ml-2 h-4 w-4" />
                 </Link>
@@ -137,7 +139,7 @@ export function HeroSection({
             <div className="relative w-full max-w-[400px] aspect-square">
               {!imageError ? (
                 <Image
-                  src={profileImage}
+                  src={imgSrc}
                   alt={name}
                   width={400}
                   height={400}
@@ -156,4 +158,4 @@ export function HeroSection({
       </div>
     </section>
   )
-} 
+}
