@@ -24,12 +24,14 @@ export default function ProjectsPage() {
         <SpotlightContainer className="p-0">
           <div className="p-8">
             <Tabs defaultValue="all" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 md:w-auto">
-                <TabsTrigger value="all">All Projects</TabsTrigger>
-                <TabsTrigger value="web">Web Development</TabsTrigger>
-                <TabsTrigger value="cloud">Cloud Engineering</TabsTrigger>
-                <TabsTrigger value="data">Data Engineering</TabsTrigger>
-              </TabsList>
+              <div className="overflow-x-auto pb-2">
+                <TabsList className="inline-flex w-auto min-w-full md:w-auto">
+                  <TabsTrigger value="all" className="px-4">All Projects</TabsTrigger>
+                  <TabsTrigger value="web" className="px-4">Web Development</TabsTrigger>
+                  <TabsTrigger value="cloud" className="px-4">Cloud Engineering</TabsTrigger>
+                  <TabsTrigger value="data" className="px-4">Data Engineering</TabsTrigger>
+                </TabsList>
+              </div>
               <TabsContent value="all" className="mt-6">
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {[
@@ -265,4 +267,3 @@ function ProjectCard({
     </Card>
   )
 }
-
