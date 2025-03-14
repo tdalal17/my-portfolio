@@ -6,9 +6,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, BookOpen, Briefcase, GraduationCap } from "lucide-react"
 import { PageBackground } from "@/components/ui/page-background"
 import { SpotlightContainer } from "@/components/ui/spotlight-container"
-import { ProfileFallback } from "@/components/ProfileFallback"
+import { useEffect, useState } from "react"
 
 export default function AboutPage() {
+  const [imgSrc, setImgSrc] = useState<string>("")
+  const [imgError, setImgError] = useState(false)
+  
+  useEffect(() => {
+    // Set the image path based on environment
+    const basePath = window.location.hostname.includes('github.io') ? '/my-portfolio' : ''
+    setImgSrc(`${basePath}/Tanay-prfile.jpg`)
+  }, [])
+  
+  const handleImageError = () => {
+    console.error('Failed to load image')
+    setImgError(true)
+  }
+
   return (
     <PageBackground variant="dark">
       <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20">
@@ -32,13 +46,18 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center justify-center">
               <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-xl border bg-muted animate-float">
-                <ProfileFallback 
-                  src="/Tanay-prfile.jpg"
-                  alt="Tanay Dalal"
-                  className="object-cover rounded-xl"
-                  width={400}
-                  height={400}
-                />
+                {!imgError && imgSrc ? (
+                  <img 
+                    src={imgSrc}
+                    alt="Tanay Dalal"
+                    className="w-full h-full object-cover rounded-xl"
+                    onError={handleImageError}
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-2xl font-bold">
+                    TD
+                  </div>
+                )}
               </div>
             </div>
           </div>
