@@ -6,8 +6,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { PageBackground } from "@/components/ui/page-background"
 import { SpotlightContainer } from "@/components/ui/spotlight-container"
+import { useState } from "react"
 
 export default function AboutPage() {
+  const [imageError, setImageError] = useState(false)
   const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
   
   return (
@@ -33,17 +35,23 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center justify-center">
               <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-xl border bg-muted animate-float">
-                <Image 
-                  src={`${basePath}/Tanay-prfile.jpg`} 
-                  alt="Tanay Dalal" 
-                  fill 
-                  className="object-cover"
-                  onError={(e) => {
-                    console.error('Failed to load profile image');
-                    // Optional: Set a fallback
-                    e.currentTarget.style.display = 'none';
-                  }} 
-                />
+                {!imageError ? (
+                  <Image 
+                    src={`${basePath}/Tanay-prfile.jpg`} 
+                    alt="Tanay Dalal" 
+                    fill 
+                    className="object-cover"
+                    onError={() => {
+                      console.error('Failed to load profile image');
+                      setImageError(true);
+                    }}
+                    priority 
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-2xl font-bold">
+                    TD
+                  </div>
+                )}
               </div>
             </div>
           </div>
