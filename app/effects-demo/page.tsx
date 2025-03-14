@@ -3,7 +3,7 @@ import { PageTransition } from "@/components/ui/page-transition"
 
 export default function EffectsDemoPage() {
   return (
-    <PageTransition variant="fade">
+    <PageTransition>
       <EffectsShowcase />
     </PageTransition>
   )

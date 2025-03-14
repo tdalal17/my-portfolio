@@ -20,8 +20,7 @@ export function EffectsShowcase() {
       {/* Particle Background */}
       <ParticleBackground 
         particleCount={40} 
-        interactive={true} 
-        colorMode="auto"
+        interactive={true}
       />
       
       {/* Hero Section with Animated Gradient */}
