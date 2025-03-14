@@ -1,12 +1,11 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
 import { WaveBackground } from "@/components/ui/wave-background"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ProfileFallback } from "./ProfileFallback"
 
 interface HeroSectionProps {
   className?: string
@@ -23,7 +22,19 @@ export function HeroSection({
   description = "specializing in backend development and cloud architecture. AWS Certified with expertise in Java, Python, and microservices.",
   profileImage = "/Tanay-prfile.jpg"
 }: HeroSectionProps) {
-  const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
+  const [imgSrc, setImgSrc] = useState<string>("")
+  const [imgError, setImgError] = useState(false)
+  
+  useEffect(() => {
+    // Set the image path based on environment
+    const basePath = window.location.hostname.includes('github.io') ? '/my-portfolio' : ''
+    setImgSrc(`${basePath}${profileImage}`)
+  }, [profileImage])
+  
+  const handleImageError = () => {
+    console.error('Failed to load image')
+    setImgError(true)
+  }
   
   return (
     <section 
@@ -77,7 +88,7 @@ export function HeroSection({
                 className="border-primary/20 hover:border-primary/40"
                 size="lg"
               >
-                <Link href={`${basePath}/Tanay.Dalal.pdf`} target="_blank" download className="flex items-center">
+                <Link href={`${imgSrc.split('/Tanay-prfile.jpg')[0]}/Tanay.Dalal.pdf`} target="_blank" download className="flex items-center">
                   <span>Download Resume</span>
                   <Download className="ml-2 h-4 w-4" />
                 </Link>
@@ -126,17 +137,22 @@ export function HeroSection({
             </div>
           </div>
           
-          {/* Profile Photo - Using our new robust component */}
+          {/* Profile Photo - Using regular HTML img for better compatibility */}
           <div className="flex items-center justify-center">
             <div className="relative w-full max-w-[400px] aspect-square">
               <div className="rounded-full w-full h-full border-4 border-background dark:border-[#312B22] shadow-md overflow-hidden">
-                <ProfileFallback
-                  src={profileImage}
-                  alt={name}
-                  width={400}
-                  height={400}
-                  className="rounded-full object-cover"
-                />
+                {!imgError && imgSrc ? (
+                  <img
+                    src={imgSrc}
+                    alt={name}
+                    className="w-full h-full object-cover"
+                    onError={handleImageError}
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-primary/10 text-primary font-bold text-3xl">
+                    {name.split(' ').map(word => word[0]).join('')}
+                  </div>
+                )}
               </div>
             </div>
           </div>
