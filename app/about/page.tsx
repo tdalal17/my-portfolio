@@ -1,17 +1,14 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Award, BookOpen, Briefcase, GraduationCap } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
 import { PageBackground } from "@/components/ui/page-background"
 import { SpotlightContainer } from "@/components/ui/spotlight-container"
-import { useState } from "react"
+import { ProfileFallback } from "@/components/ProfileFallback"
 
 export default function AboutPage() {
-  const [imageError, setImageError] = useState(false)
-  const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
-  
   return (
     <PageBackground variant="dark">
       <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20">
@@ -35,23 +32,13 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center justify-center">
               <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-xl border bg-muted animate-float">
-                {!imageError ? (
-                  <Image 
-                    src={`${basePath}/Tanay-prfile.jpg`} 
-                    alt="Tanay Dalal" 
-                    fill 
-                    className="object-cover"
-                    onError={() => {
-                      console.error('Failed to load profile image');
-                      setImageError(true);
-                    }}
-                    priority 
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-2xl font-bold">
-                    TD
-                  </div>
-                )}
+                <ProfileFallback 
+                  src="/Tanay-prfile.jpg"
+                  alt="Tanay Dalal"
+                  className="object-cover rounded-xl"
+                  width={400}
+                  height={400}
+                />
               </div>
             </div>
           </div>
