@@ -175,5 +175,18 @@ p {
   .hover-lift {
     @apply transition-transform duration-300 hover:-translate-y-1;
   }
+  
+  /* Animated availability indicator */
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
 }
-
