@@ -8,6 +8,8 @@ import { PageBackground } from "@/components/ui/page-background"
 import { SpotlightContainer } from "@/components/ui/spotlight-container"
 
 export default function AboutPage() {
+  const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
+  
   return (
     <PageBackground variant="dark">
       <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20">
@@ -31,7 +33,17 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center justify-center">
               <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-xl border bg-muted animate-float">
-                <Image src="/Tanay-prfile.jpg" alt="Tanay Dalal" fill className="object-cover" />
+                <Image 
+                  src={`${basePath}/Tanay-prfile.jpg`} 
+                  alt="Tanay Dalal" 
+                  fill 
+                  className="object-cover"
+                  onError={(e) => {
+                    console.error('Failed to load profile image');
+                    // Optional: Set a fallback
+                    e.currentTarget.style.display = 'none';
+                  }} 
+                />
               </div>
             </div>
           </div>
@@ -217,4 +229,3 @@ export default function AboutPage() {
     </PageBackground>
   )
 }
-
