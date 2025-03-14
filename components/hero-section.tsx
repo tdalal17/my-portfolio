@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
-import Image from "next/image"
+import React from "react"
 import Link from "next/link"
 import { WaveBackground } from "@/components/ui/wave-background"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ProfileFallback } from "./ProfileFallback"
 
 interface HeroSectionProps {
   className?: string
@@ -23,15 +23,7 @@ export function HeroSection({
   description = "specializing in backend development and cloud architecture. AWS Certified with expertise in Java, Python, and microservices.",
   profileImage = "/Tanay-prfile.jpg"
 }: HeroSectionProps) {
-  const [imageError, setImageError] = useState(false)
   const basePath = process.env.NODE_ENV === 'production' ? '/my-portfolio' : ''
-  const imgSrc = `${basePath}${profileImage}`
-  
-  // Handle image error
-  const handleImageError = () => {
-    console.error("Failed to load profile image:", imgSrc)
-    setImageError(true)
-  }
   
   return (
     <section 
@@ -134,24 +126,18 @@ export function HeroSection({
             </div>
           </div>
           
-          {/* Profile Photo - Simple and Reliable */}
+          {/* Profile Photo - Using our new robust component */}
           <div className="flex items-center justify-center">
             <div className="relative w-full max-w-[400px] aspect-square">
-              {!imageError ? (
-                <Image
-                  src={imgSrc}
+              <div className="rounded-full w-full h-full border-4 border-background dark:border-[#312B22] shadow-md overflow-hidden">
+                <ProfileFallback
+                  src={profileImage}
                   alt={name}
                   width={400}
                   height={400}
-                  className="rounded-full border-4 border-background dark:border-[#312B22] object-cover shadow-md"
-                  priority
-                  onError={handleImageError}
+                  className="rounded-full object-cover"
                 />
-              ) : (
-                <div className="rounded-full w-full h-full border-4 border-background dark:border-[#312B22] bg-primary/10 flex items-center justify-center text-primary font-bold text-2xl shadow-md">
-                  {name.split(' ').map(word => word[0]).join('')}
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
