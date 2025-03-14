@@ -141,6 +141,14 @@ module.exports = {
           "0%, 100%": { opacity: 0.5, transform: "scale(1)" },
           "50%": { opacity: 0.8, transform: "scale(1.05)" },
         },
+        pulse: {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.3 },
+        },
+        "pulse-subtle": {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.7 },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -153,6 +161,8 @@ module.exports = {
         "scale-in": "scale-in 0.5s ease-out",
         "gradient": "gradient-shift 8s ease infinite",
         "pulse-slow": "pulse-slow 2s ease-in-out infinite",
+        "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "pulse-subtle": "pulse-subtle 2s ease-in-out infinite",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -171,4 +181,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
-
