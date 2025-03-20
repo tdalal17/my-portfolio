@@ -53,7 +53,7 @@ export function HeroSection({
             <div className="space-y-3">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
                 <span className="relative flex h-2 w-2 mr-2">
-                  <span className="inline-flex rounded-full h-2 w-2 bg-primary animate-pulse"></span>
+                  <span className="inline-flex rounded-full h-2 w-2 bg-green-500 animate-pulse"></span>
                 </span>
                 Available for new opportunities
               </div>
