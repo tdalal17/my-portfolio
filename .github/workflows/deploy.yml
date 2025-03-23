@@ -1,6 +1,6 @@
 # .github/workflows/deploy.yml
 
-name: Deploy Portfolio Website
+name: Deploy Portfolio to GitHub Pages and AWS S3
 
 on:
   push:
@@ -31,6 +31,7 @@ jobs:
         with:
           node-version: '18'
           
+      # Use npm install instead of npm ci to generate a new package-lock.json
       - name: Install dependencies
         run: npm install
         
@@ -39,13 +40,22 @@ jobs:
         env:
           NODE_ENV: production
         
-      - name: Upload GitHub Pages artifact
+      - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      
-      # Removing S3 specific steps to simplify the workflow for now
-      # We'll focus on getting GitHub Pages deployment working first
+          
+      # Configure AWS Credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          
+      # Deploy to AWS S3
+      - name: Deploy to AWS S3
+        run: aws s3 sync ./out s3://tanaydalal.com/ --delete
 
   deploy-github-pages:
     environment:
