@@ -12,20 +12,26 @@ const nextConfig = {
       },
     ],
   },
-  // Set the basePath to your repository name for GitHub Pages
-  basePath: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
-  // Disable trailing slashes for GitHub Pages compatibility
+  // Set conditional basePath based on environment
+  // For GitHub Pages we need /my-portfolio
+  // For custom domain we don't want a prefix
+  basePath: process.env.DEPLOY_TARGET === 'github' ? '/my-portfolio' : '',
+  
+  // Disable trailing slashes for compatibility
   trailingSlash: true,
-  // This setting ensures assets are correctly loaded on GitHub Pages
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
+  
+  // Asset prefix should match basePath
+  assetPrefix: process.env.DEPLOY_TARGET === 'github' ? '/my-portfolio' : '',
+  
   // Disable ESLint during builds
   eslint: {
     ignoreDuringBuilds: true,
   },
+  
   // Disable TypeScript type checking during builds
   typescript: {
     ignoreBuildErrors: true,
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
