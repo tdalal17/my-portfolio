@@ -44,18 +44,8 @@ jobs:
         with:
           path: ./out
       
-      # Create a zip file of the build for S3 deployment
-      - name: Create build archive for S3
-        run: |
-          cd out
-          zip -r ../build.zip .
-          cd ..
-      
-      - name: Upload build artifact for S3
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifact
-          path: build.zip
+      # Removing S3 specific steps to simplify the workflow for now
+      # We'll focus on getting GitHub Pages deployment working first
 
   deploy-github-pages:
     environment:
@@ -67,32 +57,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # Comment out the S3 deployment for now until AWS credentials are set up
-  # deploy-to-s3:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   steps:
-  #     - name: Download build artifact
-  #       uses: actions/download-artifact@v3
-  #       with:
-  #         name: build-artifact
-  #         
-  #     - name: Unzip build files
-  #       run: unzip build.zip -d ./out
-  #         
-  #     - name: Configure AWS credentials
-  #       uses: aws-actions/configure-aws-credentials@v2
-  #       with:
-  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         aws-region: us-east-1
-  #     
-  #     - name: Deploy to S3 bucket
-  #       run: |
-  #         aws s3 sync ./out s3://${{ secrets.S3_BUCKET_NAME }} --delete
-  #     
-  #     - name: Invalidate CloudFront cache
-  #       if: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID != '' }}
-  #       run: |
-  #         aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
