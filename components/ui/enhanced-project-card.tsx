@@ -69,7 +69,7 @@ export function EnhancedProjectCard({
   return (
     <div
       className={cn(
-        "card-enhanced group/card relative overflow-hidden rounded-lg border bg-card will-change-transform",
+        "card-enhanced group/card relative overflow-hidden rounded-lg border bg-card will-change-transform shadow-md",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -85,7 +85,7 @@ export function EnhancedProjectCard({
         <div
           className="absolute inset-0 pointer-events-none bg-gradient-radial z-10"
           style={{
-            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.1) 0%, transparent 50%)`,
+            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.15) 0%, transparent 50%)`,
             mixBlendMode: 'overlay'
           }}
           aria-hidden="true"
@@ -103,11 +103,11 @@ export function EnhancedProjectCard({
             isHovered && !prefersReducedMotion ? "scale-105" : ""
           )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent transition-opacity duration-300" />
         
         {/* Project date */}
         {date && (
-          <div className="absolute top-4 right-4 rounded-full bg-background/80 backdrop-blur-sm px-3 py-1 text-xs font-medium">
+          <div className="absolute top-4 right-4 rounded-full bg-background/90 backdrop-blur-sm px-3 py-1 text-xs font-medium border border-border/30">
             {date}
           </div>
         )}
@@ -116,7 +116,7 @@ export function EnhancedProjectCard({
       {/* Content */}
       <div className="relative p-6 z-10">
         <h3 className={cn(
-          "text-xl font-bold transition-transform duration-300",
+          "text-xl font-bold transition-transform duration-300 text-foreground",
           isHovered && !prefersReducedMotion ? "transform -translate-y-1" : ""
         )}>
           {title}
@@ -134,7 +134,7 @@ export function EnhancedProjectCard({
           isHovered && !prefersReducedMotion ? "opacity-100" : "opacity-80"
         )}>
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="px-2 py-1 text-xs transition-all duration-300 hover:bg-primary/20">
+            <Badge key={tag} variant="secondary" className="px-2 py-1 text-xs transition-all duration-300 hover:bg-primary/20 border border-border/30">
               {tag}
             </Badge>
           ))}
@@ -174,4 +174,4 @@ export function EnhancedProjectCard({
       </div>
     </div>
   )
-} 
+}
