@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    /* Light Mode Colors */
-    --bg-primary: 37 100% 97%;      /* #FFF8F0 (Warm White) */
-    --bg-secondary: 33 50% 92%;     /* #F5EBE0 (Soft Ivory) */
-    --bg-tertiary: 30 40% 84%;      /* #E8D5C4 (Muted Terracotta) */
-    --bg-quaternary: 27 33% 72%;    /* #D0B49F (Soft Caramel) */
+    /* Light Mode Colors - Improved for better contrast */
+    --bg-primary: 37 80% 97%;      /* #FFF8F0 (Warm White) */
+    --bg-secondary: 33 50% 92%;    /* #F5EBE0 (Soft Ivory) */
+    --bg-tertiary: 30 40% 84%;     /* #E8D5C4 (Muted Terracotta) */
+    --bg-quaternary: 27 33% 72%;   /* #D0B49F (Soft Caramel) */
     
-    --text-primary: 28 33% 20%;     /* #433220 (Deep Oak) */
-    --text-secondary: 27 21% 34%;   /* #6B5744 (Mocha) */
-    --text-accent: 20 35% 46%;      /* #A06B4E (Terracotta) */
+    --text-primary: 28 50% 15%;    /* #311E13 (Darker Oak - increased contrast) */
+    --text-secondary: 27 35% 25%;  /* #513828 (Darker Mocha - increased contrast) */
+    --text-accent: 20 55% 40%;     /* #A05A36 (Richer Terracotta - increased contrast) */
     
     /* Enhanced color variations */
-    --primary-light: 20 35% 51%;    /* Slightly lighter terracotta for hover states */
-    --primary-dark: 20 35% 41%;     /* Slightly darker terracotta for active states */
-    --accent-light: 30 40% 89%;     /* Lighter accent for hover effects */
+    --primary-light: 20 55% 45%;   /* Slightly lighter terracotta for hover states */
+    --primary-dark: 20 55% 35%;    /* Slightly darker terracotta for active states */
+    --accent-light: 30 40% 89%;    /* Lighter accent for hover effects */
     --accent-muted: 30 40% 84% / 0.5; /* Semi-transparent accent */
     
     /* System Variables Mapped to Our Palette */
@@ -27,24 +27,24 @@
     --card-foreground: var(--text-primary);
     --popover: var(--bg-primary);
     --popover-foreground: var(--text-primary);
-    --primary: 20 35% 46%;          /* #A06B4E (Terracotta) */
+    --primary: 20 55% 40%;         /* #A05A36 (Richer Terracotta - increased contrast) */
     --primary-foreground: 37 100% 97%;
-    --secondary: 27 33% 72%;        /* #D0B49F (Soft Caramel) */
-    --secondary-foreground: 28 33% 20%;
+    --secondary: 27 33% 65%;       /* #C4A38D (Adjusted Soft Caramel for better contrast) */
+    --secondary-foreground: 28 50% 15%;
     --muted: var(--bg-secondary);
-    --muted-foreground: var(--text-secondary);
-    --accent: 30 40% 84%;           /* #E8D5C4 (Muted Terracotta) */
+    --muted-foreground: 27 35% 25%;
+    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) */
     --accent-foreground: var(--text-primary);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 40% 84%;
+    --border: 30 40% 75%;
     --input: 33 50% 92%;
-    --ring: 20 35% 46%;
+    --ring: 20 55% 40%;
     --radius: 0.5rem;
     
     /* RGB values for JavaScript manipulation */
-    --primary-rgb: 160, 107, 78;
-    --secondary-rgb: 208, 180, 159;
+    --primary-rgb: 160, 90, 54;
+    --secondary-rgb: 196, 163, 141;
     --accent-rgb: 232, 213, 196;
     
     /* Font families */
