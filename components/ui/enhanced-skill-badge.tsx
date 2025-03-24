@@ -29,7 +29,7 @@ export function EnhancedSkillBadge({
             key={i}
             className={cn(
               "h-1 w-1 rounded-full transition-colors duration-300",
-              i <= level ? "bg-primary" : "bg-primary/20"
+              i <= level ? "bg-primary" : "bg-primary/30"
             )}
           />
         ))}
@@ -40,7 +40,7 @@ export function EnhancedSkillBadge({
   return (
     <div 
       className={cn(
-        "skill-badge group",
+        "skill-badge group relative border border-primary/20 hover:border-primary/30 shadow-sm",
         className
       )}
       {...props}
@@ -51,13 +51,13 @@ export function EnhancedSkillBadge({
         </div>
       )}
       
-      <span className="text-sm font-medium">{name}</span>
+      <span className="text-sm font-medium text-foreground/90">{name}</span>
       
       {levelIndicator()}
       
       {/* Show level on hover */}
       {level > 0 && (
-        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-md bg-popover px-2 py-1 text-xs font-medium shadow-md opacity-0 transition-opacity group-hover:opacity-100">
+        <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 rounded-md bg-popover px-2 py-1 text-xs font-medium shadow-md opacity-0 transition-opacity group-hover:opacity-100 border border-border z-10">
           {
             level === 1 ? "Beginner" :
             level === 2 ? "Elementary" :
@@ -69,4 +69,4 @@ export function EnhancedSkillBadge({
       )}
     </div>
   )
-} 
+}
