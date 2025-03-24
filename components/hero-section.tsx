@@ -38,7 +38,7 @@ export function HeroSection({
   return (
     <section 
       className={cn(
-        "relative min-h-[90vh] w-full overflow-hidden flex items-start pt-16 md:pt-24",
+        "relative min-h-[65vh] w-full overflow-hidden flex items-start pt-6 md:pt-10",
         className
       )}
     >
@@ -46,10 +46,10 @@ export function HeroSection({
       <div className="absolute inset-0 bg-gradient-to-b from-background to-background/90"></div>
       
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12 items-center">
+        <div className="grid gap-4 lg:grid-cols-[1.2fr_1fr] lg:gap-6 items-center">
           {/* Text Content */}
-          <div className="flex flex-col justify-center space-y-6">
-            <div className="space-y-2 md:space-y-3">
+          <div className="flex flex-col justify-center space-y-3">
+            <div className="space-y-1 md:space-y-2">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/15 text-primary text-sm font-medium mt-0 mb-4 md:mb-2 shadow-sm border border-primary/10">
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="inline-flex rounded-full h-2 w-2 bg-green-500 animate-pulse"></span>
@@ -69,7 +69,7 @@ export function HeroSection({
               {description}
             </p>
             
-            <div className="flex flex-col gap-3 min-[400px]:flex-row pt-2">
+            <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button 
                 asChild 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
@@ -94,7 +94,7 @@ export function HeroSection({
               </Button>
             </div>
             
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-4 pt-1">
               <Link 
                 href="https://github.com/tdalal17" 
                 target="_blank" 
@@ -138,7 +138,7 @@ export function HeroSection({
           
           {/* Profile Photo - Using regular HTML img for better compatibility */}
           <div className="flex items-center justify-center">
-            <div className="relative w-full max-w-[400px] aspect-square">
+            <div className="relative w-full max-w-[300px] aspect-square">
               <div className="rounded-full w-full h-full border-4 border-background shadow-md overflow-hidden">
                 {!imgError && imgSrc ? (
                   <img

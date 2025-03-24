@@ -20,8 +20,8 @@ export default function Home() {
         />
 
         {/* About Me Section */}
-        <section className="py-12 md:py-16 lg:py-20 animate-fade-in">
-          <div className="container space-y-8 px-4 md:px-6">
+        <section className="py-6 md:py-8 lg:py-10 animate-fade-in">
+          <div className="container space-y-4 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
@@ -53,8 +53,8 @@ export default function Home() {
         </section>
 
         {/* Technical Skills Section */}
-        <section className="py-16 md:py-24 lg:py-28 mt-8 mb-8">
-          <div className="container space-y-12 px-4 md:px-6">
+        <section className="py-6 md:py-8 lg:py-10 mt-0">
+          <div className="container space-y-6 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
@@ -142,8 +142,8 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section className="py-12 md:py-16 lg:py-20">
-          <div className="container space-y-12 px-4 md:px-6">
+        <section className="py-6 md:py-8 lg:py-10">
+          <div className="container space-y-6 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
                 <div className="space-y-2">
@@ -154,9 +154,9 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="mx-auto max-w-4xl space-y-8 mt-12">
-                <div className="rounded-lg p-6 animate-fade-in-up">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+              <div className="mx-auto max-w-4xl space-y-4 mt-6">
+                <div className="rounded-lg p-4 animate-fade-in-up">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <Briefcase className="h-5 w-5 text-primary" />
@@ -175,7 +175,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <ul className="space-y-2 list-disc pl-5 text-foreground">
+                  <ul className="space-y-1 list-disc pl-5 text-foreground">
                     <li>Designed and implemented backend microservices using Python and Java, creating scalable APIs and achieving 40% performance improvement through containerized deployment.</li>
                     <li>Developed responsive web interfaces and RESTful APIs with comprehensive documentation, maintaining 99% uptime.</li>
                     <li>Orchestrated automated testing pipelines using JUnit and PyTest, reducing deployment time by 50% while maintaining quality standards.</li>
@@ -184,8 +184,8 @@ export default function Home() {
                   </ul>
                 </div>
                 
-                <div className="rounded-lg p-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <div className="rounded-lg p-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <Briefcase className="h-5 w-5 text-primary" />
@@ -200,14 +200,14 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <ul className="space-y-2 list-disc pl-5 text-foreground">
+                  <ul className="space-y-1 list-disc pl-5 text-foreground">
                     <li>Led operational team in inventory management and process optimization, implementing efficient error detection workflows.</li>
                     <li>Managed supply chain operations and stock optimization, achieving 97% customer satisfaction rate through systematic problem-solving.</li>
                   </ul>
                 </div>
                 
-                <div className="rounded-lg p-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <div className="rounded-lg p-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <Briefcase className="h-5 w-5 text-primary" />
@@ -222,7 +222,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <ul className="space-y-2 list-disc pl-5 text-foreground">
+                  <ul className="space-y-1 list-disc pl-5 text-foreground">
                     <li>Collaborated with cross-functional IT teams to resolve complex TCP/IP network connectivity issues across Windows, Linux, and MacOS environments, improving average resolution time by 35%.</li>
                     <li>Developed and maintained automated testing scripts using PowerShell to streamline routine system maintenance tasks, reducing manual workload by 30%.</li>
                   </ul>
@@ -233,7 +233,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="py-12 md:py-16 lg:py-20">
+        <section className="py-6 md:py-8 lg:py-10">
           <div className="container px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -244,7 +244,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
+              <div className="mx-auto grid max-w-5xl items-center gap-4 py-8 lg:grid-cols-2 lg:gap-8">
                 <ProjectCard
                   title="Data Integration Platform"
                   description="Led a 5-person Scrum team using Jira for sprint planning and backlog grooming, achieving 95% sprint velocity and delivering features on time across 6 sprints. Architected microservices using Spring Boot and domain-driven design."
@@ -303,15 +303,15 @@ function ProjectCard({
 }) {
   return (
     <div 
-      className="rounded-lg p-6 hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 animate-fade-in-up border border-transparent hover:border-primary/20" 
+      className="rounded-lg p-4 hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 animate-fade-in-up border border-transparent hover:border-primary/20" 
       style={{ animationDelay: `${0.2 * delay}s` }}
     >
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <h3 className="text-xl font-bold">{title}</h3>
         {date && <span className="text-sm text-muted-foreground">{date}</span>}
       </div>
-      <p className="text-foreground mb-4">{description}</p>
-      <div className="flex flex-wrap gap-2 mt-4">
+      <p className="text-foreground mb-3">{description}</p>
+      <div className="flex flex-wrap gap-2">
         {tags.map((tag) => (
           <Badge key={tag} variant="outline" className="text-xs text-foreground hover:bg-primary/10 hover:scale-105 transition-all duration-200">
             {tag}
@@ -321,4 +321,3 @@ function ProjectCard({
     </div>
   )
 }
-

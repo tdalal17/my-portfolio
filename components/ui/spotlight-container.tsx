@@ -47,7 +47,7 @@ export function SpotlightContainer({
   return (
     <div 
       className={cn(
-        "relative overflow-hidden p-8 transition-all duration-300",
+        "relative overflow-hidden p-4 transition-all duration-300",
         isHovering ? "shadow-xl transform scale-[1.03] border-primary/10 border" : "",
         borderRadius,
         shadow,
@@ -86,4 +86,4 @@ export function SpotlightContainer({
       </div>
     </div>
   )
-} 
+}
