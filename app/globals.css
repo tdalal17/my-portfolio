@@ -4,21 +4,21 @@
 
 @layer base {
   :root {
-    /* Light Mode Colors - Improved for better contrast */
-    --bg-primary: 37 80% 97%;      /* #FFF8F0 (Warm White) */
-    --bg-secondary: 33 50% 92%;    /* #F5EBE0 (Soft Ivory) */
-    --bg-tertiary: 30 40% 84%;     /* #E8D5C4 (Muted Terracotta) */
-    --bg-quaternary: 27 33% 72%;   /* #D0B49F (Soft Caramel) */
+    /* Light Mode Colors - Refined for a cleaner, more polished look */
+    --bg-primary: 40 30% 98%;      /* #FDFBF7 (Cleaner white with slight warmth) */
+    --bg-secondary: 40 25% 96%;    /* #F9F7F2 (Subtle warm white for cards) */
+    --bg-tertiary: 35 20% 92%;     /* #F3F0EA (Subtle accent for tertiary elements) */
+    --bg-quaternary: 30 15% 88%;   /* #EDEAE3 (Deeper accent for quaternary elements) */
     
-    --text-primary: 28 50% 15%;    /* #311E13 (Darker Oak - increased contrast) */
-    --text-secondary: 27 35% 25%;  /* #513828 (Darker Mocha - increased contrast) */
-    --text-accent: 20 55% 40%;     /* #A05A36 (Richer Terracotta - increased contrast) */
+    --text-primary: 25 70% 10%;    /* #301708 (Darker rich brown - further increased contrast) */
+    --text-secondary: 25 60% 20%;  /* #4E2E20 (Darker medium brown for better secondary text visibility) */
+    --text-accent: 20 70% 35%;     /* #99421E (Darker terracotta for more visible accents) */
     
     /* Enhanced color variations */
-    --primary-light: 20 55% 45%;   /* Slightly lighter terracotta for hover states */
-    --primary-dark: 20 55% 35%;    /* Slightly darker terracotta for active states */
-    --accent-light: 30 40% 89%;    /* Lighter accent for hover effects */
-    --accent-muted: 30 40% 84% / 0.5; /* Semi-transparent accent */
+    --primary-light: 20 60% 45%;   /* Slightly lighter terracotta for hover states */
+    --primary-dark: 20 70% 30%;    /* Darker terracotta for active states and better visibility */
+    --accent-light: 35 20% 94%;    /* Lighter accent for hover effects */
+    --accent-muted: 35 20% 92% / 0.5; /* Semi-transparent accent */
     
     /* System Variables Mapped to Our Palette */
     --background: var(--bg-primary);
@@ -27,25 +27,25 @@
     --card-foreground: var(--text-primary);
     --popover: var(--bg-primary);
     --popover-foreground: var(--text-primary);
-    --primary: 20 55% 40%;         /* #A05A36 (Richer Terracotta - increased contrast) */
-    --primary-foreground: 37 100% 97%;
-    --secondary: 27 33% 65%;       /* #C4A38D (Adjusted Soft Caramel for better contrast) */
-    --secondary-foreground: 28 50% 15%;
+    --primary: 20 70% 35%;         /* #99421E (Darker terracotta for better visibility) */
+    --primary-foreground: 40 30% 98%;
+    --secondary: 25 25% 90%;       /* #EDE7DF (Subtle warm background for secondary elements) */
+    --secondary-foreground: 25 70% 10%;
     --muted: var(--bg-secondary);
-    --muted-foreground: 27 35% 25%;
-    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) */
+    --muted-foreground: 25 60% 25%; /* Darker muted foreground text */
+    --accent: 35 20% 92%;          /* #F3F0EA (Subtle accent) */
     --accent-foreground: var(--text-primary);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 40% 75%;
-    --input: 33 50% 92%;
-    --ring: 20 55% 40%;
+    --border: 35 15% 85%;
+    --input: 40 25% 96%;
+    --ring: 20 70% 35%;
     --radius: 0.5rem;
     
     /* RGB values for JavaScript manipulation */
-    --primary-rgb: 160, 90, 54;
-    --secondary-rgb: 196, 163, 141;
-    --accent-rgb: 232, 213, 196;
+    --primary-rgb: 153, 66, 30;    /* Updated to match the darker primary */
+    --secondary-rgb: 237, 231, 223;
+    --accent-rgb: 243, 240, 234;
     
     /* Font families */
     --font-sans: var(--font-inter);
@@ -53,7 +53,7 @@
   }
 
   .dark {
-    /* Dark Mode Colors - Updated to match our new palette */
+    /* Dark Mode Colors - Keeping these the same */
     --bg-primary: 34 15% 9%;       /* #1B1814 (Dark wood brown) */
     --bg-secondary: 34 12% 11%;    /* #211D19 (Slightly lighter brown) */
     --bg-tertiary: 33 14% 15%;     /* #2A251F (Highlight brown) */
@@ -76,13 +76,13 @@
     --card-foreground: var(--text-primary);
     --popover: var(--bg-primary);
     --popover-foreground: var(--text-primary);
-    --primary: 20 35% 46%;         /* #A06B4E (Terracotta) - Same as light mode */
+    --primary: 20 35% 46%;         /* #A06B4E (Terracotta) */
     --primary-foreground: 33 50% 92%;
-    --secondary: 27 33% 72%;       /* #D0B49F (Soft Caramel) - Same as light mode */
+    --secondary: 27 33% 72%;       /* #D0B49F (Soft Caramel) */
     --secondary-foreground: 33 50% 92%;
     --muted: var(--bg-secondary);
     --muted-foreground: var(--text-secondary);
-    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) - Same as light mode */
+    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) */
     --accent-foreground: var(--text-primary);
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -181,12 +181,30 @@ p {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
+  /* Slower pulse animation for spotlight effects */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
   @keyframes pulse {
     0%, 100% {
       opacity: 1;
     }
     50% {
       opacity: 0.3;
+    }
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgba(var(--primary-rgb), 0.3);
+    }
+    to {
+      box-shadow: 0 0 20px -5px rgba(var(--primary-rgb), 0.6);
     }
   }
 }
