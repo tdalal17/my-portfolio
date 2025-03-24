@@ -3,11 +3,33 @@ import Link from "next/link"
 import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, GraduationCap, Calendar, Award, Briefcase } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { HeroSection } from "@/components/hero-section"
 import { PageBackground } from "@/components/ui/page-background"
-import { SpotlightContainer } from "@/components/ui/spotlight-container"
+import dynamic from 'next/dynamic'
+import { getFeaturedProjects } from '@/lib/projectData'
+
+// Dynamically import components not needed for initial render
+const HeroSection = dynamic(() => import('@/components/hero-section').then(mod => mod.HeroSection), {
+  ssr: true
+})
+
+const SpotlightContainer = dynamic(() => import('@/components/ui/spotlight-container').then(mod => mod.SpotlightContainer), {
+  ssr: true
+})
+
+// Generate static metadata for the home page
+export const metadata = {
+  title: 'Tanay Dalal | Software Engineer & Cloud Enthusiast',
+  description: 'Personal portfolio of Tanay Dalal, Software Engineer specializing in backend development and cloud architecture.',
+};
+
+// Mark as static page
+export const generateStaticParams = async () => {
+  return [];
+};
 
 export default function Home() {
+  const featuredProjects = getFeaturedProjects();
+  
   return (
     <PageBackground variant="light">
       <div>
@@ -20,7 +42,7 @@ export default function Home() {
         />
 
         {/* About Me Section */}
-        <section className="py-6 md:py-8 lg:py-10 animate-fade-in">
+        <section className="py-6 md:py-6 lg:py-6 animate-fade-in">
           <div className="container space-y-4 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -53,7 +75,7 @@ export default function Home() {
         </section>
 
         {/* Technical Skills Section */}
-        <section className="py-6 md:py-8 lg:py-10 mt-0">
+        <section className="py-6 md:py-6 lg:py-6 mt-0">
           <div className="container space-y-6 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -142,7 +164,7 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section className="py-6 md:py-8 lg:py-10">
+        <section className="py-6 md:py-6 lg:py-6">
           <div className="container space-y-6 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -233,7 +255,7 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section className="py-6 md:py-8 lg:py-10">
+        <section className="py-6 md:py-6 lg:py-6">
           <div className="container px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -245,20 +267,16 @@ export default function Home() {
                 </div>
               </div>
               <div className="mx-auto grid max-w-5xl items-center gap-4 py-8 lg:grid-cols-2 lg:gap-8">
-                <ProjectCard
-                  title="Data Integration Platform"
-                  description="Led a 5-person Scrum team using Jira for sprint planning and backlog grooming, achieving 95% sprint velocity and delivering features on time across 6 sprints. Architected microservices using Spring Boot and domain-driven design."
-                  tags={["Java", "Spring Boot", "RESTful APIs", "Git/GitHub", "Jenkins", "Oracle SQL"]}
-                  date="March 2024"
-                  delay={0}
-                />
-                <ProjectCard
-                  title="Enterprise Data Integration Platform"
-                  description="Architected backend services using distributed systems principles, implementing fault-tolerant network protocols with 95% test coverage. Designed microservices architecture using Apache Kafka and AWS SQS, ensuring 99.9% message delivery reliability."
-                  tags={["Python", "Java", "AWS", "Apache Kafka", "React", "Microservices"]}
-                  date="January 2024"
-                  delay={1}
-                />
+                {featuredProjects.map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    title={project.title}
+                    description={project.description}
+                    tags={project.tags}
+                    date={project.date}
+                    delay={index}
+                  />
+                ))}
               </div>
               <div className="flex justify-center">
                 <Button asChild>
@@ -304,7 +322,11 @@ function ProjectCard({
   return (
     <div 
       className="rounded-lg p-4 hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 animate-fade-in-up border border-transparent hover:border-primary/20" 
-      style={{ animationDelay: `${0.2 * delay}s` }}
+      style={{ 
+        animationDelay: `${0.2 * delay}s`,
+        transform: 'translateZ(0)', // GPU acceleration
+        backfaceVisibility: 'hidden'
+      }}
     >
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-xl font-bold">{title}</h3>
@@ -321,3 +343,5 @@ function ProjectCard({
     </div>
   )
 }
+
+
