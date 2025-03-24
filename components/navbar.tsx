@@ -17,27 +17,22 @@ export function Navbar() {
     {
       href: "/",
       label: "Home",
-      active: pathname === "/",
     },
     {
       href: "/about",
       label: "About",
-      active: pathname === "/about",
     },
     {
       href: "/projects",
       label: "Projects",
-      active: pathname === "/projects",
     },
     {
       href: "/resume",
       label: "Resume",
-      active: pathname === "/resume",
     },
     {
       href: "/contact",
       label: "Contact",
-      active: pathname === "/contact",
     },
   ]
 
@@ -45,26 +40,27 @@ export function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-sm">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">Tanay Dalal</span>
+          <span className="text-xl font-bold text-[#B46E3C]">Tanay Dalal</span>
         </Link>
         
         <nav className="hidden gap-8 md:flex">
           {routes.map((route) => (
-            <Link
-              key={route.href}
-              href={route.href}
-              className={cn(
-                "relative text-sm font-medium transition-colors hover:text-primary",
-                route.active 
-                  ? "text-primary" 
-                  : "text-muted-foreground"
+            <div key={route.href} className="relative h-16 flex items-center">
+              <Link
+                href={route.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-[#B46E3C]",
+                  pathname === route.href
+                    ? "text-[#B46E3C]" 
+                    : "text-muted-foreground"
+                )}
+              >
+                {route.label}
+              </Link>
+              {pathname === route.href && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B46E3C]" />
               )}
-            >
-              <span>{route.label}</span>
-              {route.active && (
-                <span className="absolute -bottom-1 left-0 h-0.5 w-full bg-primary"></span>
-              )}
-            </Link>
+            </div>
           ))}
         </nav>
         
@@ -76,7 +72,7 @@ export function Navbar() {
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="md:hidden hover:bg-primary/10 hover:text-primary"
+                className="md:hidden hover:bg-[#B46E3C]/10 hover:text-[#B46E3C]"
               >
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
@@ -84,7 +80,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex items-center mb-8 mt-2">
-                <span className="text-xl font-bold text-primary">
+                <span className="text-xl font-bold text-[#B46E3C]">
                   Tanay Dalal
                 </span>
               </div>
@@ -95,15 +91,15 @@ export function Navbar() {
                     href={route.href}
                     className={cn(
                       "flex items-center px-4 py-2 rounded-md",
-                      route.active 
-                        ? "text-primary bg-primary/10" 
-                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                      pathname === route.href
+                        ? "text-[#B46E3C] bg-[#B46E3C]/10" 
+                        : "text-muted-foreground hover:text-[#B46E3C] hover:bg-[#B46E3C]/5"
                     )}
                     onClick={() => setIsOpen(false)}
                   >
                     {route.label}
-                    {route.active && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />
+                    {pathname === route.href && (
+                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#B46E3C]" />
                     )}
                   </Link>
                 ))}
@@ -115,4 +111,3 @@ export function Navbar() {
     </header>
   )
 }
-

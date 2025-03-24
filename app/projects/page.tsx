@@ -1,54 +1,40 @@
-import { Button } from "@/components/ui/button"
 import { PageBackground } from "@/components/ui/page-background"
 import { SpotlightContainer } from "@/components/ui/spotlight-container"
-import { Construction } from "lucide-react"
-import Link from "next/link"
 
 export default function ProjectsPage() {
   return (
     <PageBackground variant="dark">
-      <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20 min-h-[80vh] flex flex-col items-center justify-center">
-        <SpotlightContainer className="mb-16 p-8 max-w-2xl w-full">
-          <div className="space-y-4 text-center">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">My Projects</h1>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              A showcase of my technical projects, case studies, and contributions
-            </p>
-          </div>
+      <div className="flex flex-col items-center justify-center min-h-screen py-16 px-4">
+        <SpotlightContainer className="max-w-4xl w-full space-y-4 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium tracking-tight">
+            My Projects
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground font-serif">
+            A showcase of my technical projects, case studies, and contributions
+          </p>
         </SpotlightContainer>
-
-        <SpotlightContainer className="p-8 max-w-3xl w-full text-center">
-          <div className="flex flex-col items-center gap-6 py-10">
-            <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
-              <Construction className="h-10 w-10 text-primary" />
+        
+        <SpotlightContainer className="mt-24 max-w-2xl w-full">
+          <div className="flex flex-col items-center space-y-6 p-8 rounded-lg border border-[#B46E3C]/10">
+            <div className="w-16 h-16 rounded-full bg-[#B46E3C]/10 flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-8 h-8 text-[#B46E3C]"
+              >
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+              </svg>
             </div>
-            
-            <h2 className="text-2xl font-bold">Projects Coming Soon</h2>
-            
-            <p className="text-muted-foreground text-center max-w-md">
-              I'm currently working on updating my portfolio with my latest projects. 
-              Please check back soon to see my work in cloud engineering, web development, and data engineering.
-            </p>
-            
-            <div className="flex gap-4 mt-6">
-              <Button variant="outline" asChild>
-                <Link href="/">
-                  Return Home
-                </Link>
-              </Button>
-              
-              <Button asChild>
-                <Link href="/contact">
-                  Contact Me
-                </Link>
-              </Button>
-            </div>
-          </div>
-          
-          <div className="mt-8 p-4 border border-primary/20 rounded-lg bg-card/30">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-primary">Coming soon:</span> Projects in AWS cloud architecture, 
-              full-stack web applications, data engineering pipelines, and more.
+            <h2 className="text-2xl font-medium">Projects Coming Soon</h2>
+            <p className="text-center text-muted-foreground max-w-md">
+              I'm currently working on updating my portfolio with my latest projects.
+              Please check back soon to see my work in cloud engineering, web
+              development, and data engineering.
             </p>
           </div>
         </SpotlightContainer>
