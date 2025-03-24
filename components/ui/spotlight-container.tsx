@@ -64,9 +64,8 @@ export function SpotlightContainer({
     <div
       ref={containerRef}
       className={cn(
-        "relative overflow-hidden rounded-lg border bg-background/80 backdrop-blur-sm shadow-sm transition-all duration-300",
-        isHovered && !prefersReducedMotion ? "shadow-lg border-primary/20 scale-[1.01]" : "",
-        "p-4 md:p-6",
+        "relative transition-all duration-300",
+        isHovered && !prefersReducedMotion ? "scale-[1.01]" : "",
         className
       )}
       onMouseMove={handleMouseMove}
@@ -86,19 +85,6 @@ export function SpotlightContainer({
           aria-hidden="true"
         />
       )}
-      
-      {/* Container border glow effect on hover */}
-      <div
-        className={cn(
-          "absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500",
-          isHovered && !prefersReducedMotion ? "opacity-100" : ""
-        )}
-        style={{
-          boxShadow: "inset 0 0 0 1px rgba(var(--primary-rgb), 0.2)",
-          willChange: "opacity"
-        }}
-        aria-hidden="true"
-      />
       
       {/* Content with relative positioning to appear above effects */}
       <div className="relative z-10">{children}</div>
