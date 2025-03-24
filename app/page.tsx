@@ -9,7 +9,7 @@ import { SpotlightContainer } from "@/components/ui/spotlight-container"
 
 export default function Home() {
   return (
-    <PageBackground variant="dark">
+    <PageBackground variant="light">
       <div>
         {/* Hero Section with Wave Background */}
         <HeroSection 
@@ -53,7 +53,7 @@ export default function Home() {
         </section>
 
         {/* Technical Skills Section */}
-        <section className="py-12 md:py-16 lg:py-20">
+        <section className="py-16 md:py-24 lg:py-28 mt-8 mb-8">
           <div className="container space-y-12 px-4 md:px-6">
             <SpotlightContainer>
               <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -155,7 +155,7 @@ export default function Home() {
               </div>
               
               <div className="mx-auto max-w-4xl space-y-8 mt-12">
-                <div className="rounded-lg border bg-card p-6 shadow-sm animate-fade-in-up">
+                <div className="rounded-lg p-6 animate-fade-in-up">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -184,7 +184,7 @@ export default function Home() {
                   </ul>
                 </div>
                 
-                <div className="rounded-lg border bg-card p-6 shadow-sm animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <div className="rounded-lg p-6 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -206,7 +206,7 @@ export default function Home() {
                   </ul>
                 </div>
                 
-                <div className="rounded-lg border bg-card p-6 shadow-sm animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="rounded-lg p-6 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -280,7 +280,7 @@ function SkillBadge({ name, delay = 0 }: { name: string; delay?: number }) {
   return (
     <Badge
       variant="secondary"
-      className="animate-fade-in-up text-sm py-1.5 px-3"
+      className="animate-fade-in-up text-sm py-1.5 px-3 bg-primary/5 hover:bg-primary/30 hover:shadow-lg hover:scale-110 hover:-translate-y-1 transition-all duration-200 text-foreground font-medium border border-transparent hover:border-primary/20"
       style={{ animationDelay: `${0.1 * delay}s` }}
     >
       {name}
@@ -303,17 +303,17 @@ function ProjectCard({
 }) {
   return (
     <div 
-      className="rounded-lg border bg-card p-6 shadow-sm hover-lift animate-fade-in-up" 
+      className="rounded-lg p-6 hover:shadow-xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 animate-fade-in-up border border-transparent hover:border-primary/20" 
       style={{ animationDelay: `${0.2 * delay}s` }}
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-bold">{title}</h3>
         {date && <span className="text-sm text-muted-foreground">{date}</span>}
       </div>
-      <p className="text-muted-foreground mb-4">{description}</p>
+      <p className="text-foreground mb-4">{description}</p>
       <div className="flex flex-wrap gap-2 mt-4">
         {tags.map((tag) => (
-          <Badge key={tag} variant="outline" className="text-xs">
+          <Badge key={tag} variant="outline" className="text-xs text-foreground hover:bg-primary/10 hover:scale-105 transition-all duration-200">
             {tag}
           </Badge>
         ))}
