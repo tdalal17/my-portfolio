@@ -1,8 +1,7 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { WaveBackground } from "@/components/ui/wave-background"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -39,7 +38,7 @@ export function HeroSection({
   return (
     <section 
       className={cn(
-        "relative min-h-[90vh] w-full overflow-hidden flex items-center",
+        "relative min-h-[90vh] w-full overflow-hidden flex items-start pt-16 md:pt-24",
         className
       )}
     >
@@ -50,15 +49,15 @@ export function HeroSection({
         <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-12 items-center">
           {/* Text Content */}
           <div className="flex flex-col justify-center space-y-6">
-            <div className="space-y-3">
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-2">
+            <div className="space-y-2 md:space-y-3">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/15 text-primary text-sm font-medium mt-0 mb-4 md:mb-2 shadow-sm border border-primary/10">
                 <span className="relative flex h-2 w-2 mr-2">
                   <span className="inline-flex rounded-full h-2 w-2 bg-green-500 animate-pulse"></span>
                 </span>
                 Available for new opportunities
               </div>
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                <span className="block text-foreground dark:text-warmPalette-textPrimary">Hi, I'm </span>
+                <span className="block text-foreground">Hi, I'm </span>
                 <span className="text-gradient">{name}</span>
               </h1>
               <p className="text-xl font-medium text-primary">
@@ -66,14 +65,14 @@ export function HeroSection({
               </p>
             </div>
             
-            <p className="max-w-[600px] text-muted-foreground dark:text-warmPalette-textSecondary md:text-xl">
+            <p className="max-w-[600px] text-foreground/90 md:text-xl">
               {description}
             </p>
             
             <div className="flex flex-col gap-3 min-[400px]:flex-row pt-2">
               <Button 
                 asChild 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
                 size="lg"
               >
                 <Link href="/contact" className="flex items-center">
@@ -85,7 +84,7 @@ export function HeroSection({
               <Button 
                 asChild 
                 variant="outline" 
-                className="border-primary/20 hover:border-primary/40"
+                className="border-primary/20 hover:border-primary/40 font-medium"
                 size="lg"
               >
                 <Link href={`${imgSrc.split('/Tanay-prfile.jpg')[0]}/Tanay.Dalal.pdf`} target="_blank" download className="flex items-center">
@@ -97,14 +96,14 @@ export function HeroSection({
             
             <div className="flex gap-4 pt-4">
               <Link 
-                href="https://github.com" 
+                href="https://github.com/tdalal17" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="rounded-full bg-background hover:bg-primary/10 hover:text-primary"
+                  className="rounded-full bg-background hover:bg-primary/15 hover:text-primary border border-primary/10"
                 >
                   <Github className="h-5 w-5" />
                   <span className="sr-only">GitHub</span>
@@ -118,7 +117,7 @@ export function HeroSection({
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="rounded-full bg-background hover:bg-primary/10 hover:text-primary"
+                  className="rounded-full bg-background hover:bg-primary/15 hover:text-primary border border-primary/10"
                 >
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
@@ -128,7 +127,7 @@ export function HeroSection({
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="rounded-full bg-background hover:bg-primary/10 hover:text-primary"
+                  className="rounded-full bg-background hover:bg-primary/15 hover:text-primary border border-primary/10"
                 >
                   <Mail className="h-5 w-5" />
                   <span className="sr-only">Email</span>
@@ -140,7 +139,7 @@ export function HeroSection({
           {/* Profile Photo - Using regular HTML img for better compatibility */}
           <div className="flex items-center justify-center">
             <div className="relative w-full max-w-[400px] aspect-square">
-              <div className="rounded-full w-full h-full border-4 border-background dark:border-[#312B22] shadow-md overflow-hidden">
+              <div className="rounded-full w-full h-full border-4 border-background shadow-md overflow-hidden">
                 {!imgError && imgSrc ? (
                   <img
                     src={imgSrc}
