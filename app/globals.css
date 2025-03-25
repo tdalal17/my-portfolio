@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Base CSS variables */
+  :root {
+    --content-width: 100%; /* Base value */
+    --animation-duration: 300ms;
+    
+    /* Light Mode Colors - Refined for a cleaner, more polished look */
+    --bg-primary: 40 30% 98%;      /* #FDFBF7 (Cleaner white with slight warmth) */
+    --bg-secondary: 40 25% 96%;    /* #F9F7F2 (Subtle warm white for cards) */
+    --bg-tertiary: 35 20% 92%;     /* #F3F0EA (Subtle accent for tertiary elements) */
+    --bg-quaternary: 30 15% 88%;   /* #EDEAE3 (Deeper accent for quaternary elements) */
+    
+    --text-primary: 25 70% 10%;    /* #301708 (Darker rich brown - further increased contrast) */
+    --text-secondary: 25 60% 20%;  /* #4E2E20 (Darker medium brown for better secondary text visibility) */
+    --text-accent: 20 70% 35%;     /* #99421E (Darker terracotta for more visible accents) */
+    
+    /* Enhanced color variations */
+    --primary-light: 20 60% 45%;   /* Slightly lighter terracotta for hover states */
+    --primary-dark: 20 70% 30%;    /* Darker terracotta for active states and better visibility */
+    --accent-light: 35 20% 94%;    /* Lighter accent for hover effects */
+    --accent-muted: 35 20% 92% / 0.5; /* Semi-transparent accent */
+    
+    /* System Variables Mapped to Our Palette */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --card: var(--bg-secondary);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-primary);
+    --popover-foreground: var(--text-primary);
+    --primary: 20 70% 35%;         /* #99421E (Darker terracotta for better visibility) */
+    --primary-foreground: 40 30% 98%;
+    --secondary: 25 25% 90%;       /* #EDE7DF (Subtle warm background for secondary elements) */
+    --secondary-foreground: 25 70% 10%;
+    --muted: var(--bg-secondary);
+    --muted-foreground: 25 60% 25%; /* Darker muted foreground text */
+    --accent: 35 20% 92%;          /* #F3F0EA (Subtle accent) */
+    --accent-foreground: var(--text-primary);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 35 15% 85%;
+    --input: 40 25% 96%;
+    --ring: 20 70% 35%;
+    --radius: 0.5rem;
+    
+    /* RGB values for JavaScript manipulation */
+    --primary-rgb: 153, 66, 30;    /* Updated to match the darker primary */
+    --secondary-rgb: 237, 231, 223;
+    --accent-rgb: 243, 240, 234;
+    
+    /* Font families */
+    --font-sans: var(--font-inter);
+    
+    /* Light mode specific */
+    --scheme: light;
+  }
+  
+  /* Ensuring consistent sizing between modes */
+  .theme-loading {
+    opacity: 0;
+  }
+  
+  .theme-ready {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+  }
+  
+  /* Force scrollbar to prevent layout shifts when switching themes */
+  html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+  }
+  
+  /* Adjust animation duration for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --animation-duration: 0ms;
+    }
+  }
+  
+  /* Ensure consistent element sizing and spacing in both themes */
+  .dark, .light {
+    --content-width: 100%;
+    color-scheme: var(--scheme, light);
+  }
+  
+  .dark {
+    --scheme: dark;
+  }
+  
+  .light {
+    --scheme: light;
+  }
+
+  .dark {
+    /* Dark Mode Colors - Keeping these the same */
+    --bg-primary: 34 15% 9%;       /* #1B1814 (Dark wood brown) */
+    --bg-secondary: 34 12% 11%;    /* #211D19 (Slightly lighter brown) */
+    --bg-tertiary: 33 14% 15%;     /* #2A251F (Highlight brown) */
+    --bg-quaternary: 33 16% 19%;   /* #332E27 (Accent brown) */
+    
+    --text-primary: 33 50% 92%;    /* #F5EBE0 (Soft ivory) */
+    --text-secondary: 27 33% 72%;  /* #D0B49F (Soft caramel) */
+    --text-accent: 30 21% 54%;     /* #9C8979 (Mocha) */
+    
+    /* Enhanced color variations */
+    --primary-light: 20 35% 56%;   /* Lighter terracotta for dark mode hover */
+    --primary-dark: 20 35% 46%;    /* #A06B4E for active states */
+    --accent-light: 33 50% 92%;    /* Soft ivory for hover effects */
+    --accent-muted: 27 33% 72% / 0.5; /* Semi-transparent accent */
+    
+    /* System Variables Mapped to Our Palette */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
+    --card: var(--bg-secondary);
+    --card-foreground: var(--text-primary);
+    --popover: var(--bg-primary);
+    --popover-foreground: var(--text-primary);
+    --primary: 20 35% 46%;         /* #A06B4E (Terracotta) */
+    --primary-foreground: 33 50% 92%;
+    --secondary: 27 33% 72%;       /* #D0B49F (Soft Caramel) */
+    --secondary-foreground: 33 50% 92%;
+    --muted: var(--bg-secondary);
+    --muted-foreground: var(--text-secondary);
+    --accent: 30 40% 84%;          /* #E8D5C4 (Muted Terracotta) */
+    --accent-foreground: var(--text-primary);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: var(--bg-tertiary);
+    --input: var(--bg-tertiary);
+    --ring: 20 35% 46%;
+    
+    /* RGB values for JavaScript manipulation */
+    --primary-rgb: 160, 107, 78;
+    --secondary-rgb: 208, 180, 159;
+    --accent-rgb: 232, 213, 196;
+  }
+}
+
+/* Base styles */
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: var(--font-sans);
+}
+
+/* Typography settings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: 3rem;
+  @apply mb-6;
+}
+
+h2 {
+  font-size: 2.25rem;
+  @apply mb-4;
+}
+
+h3 {
+  font-size: 1.75rem;
+  @apply mb-3;
+}
+
+h4 {
+  font-size: 1.5rem;
+  @apply mb-2;
+}
+
+h5 {
+  font-size: 1.25rem;
+  @apply mb-2;
+}
+
+h6 {
+  font-size: 1.125rem;
+  @apply mb-2;
+}
+
+p {
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  @apply mb-4;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@layer utilities {
+  .bg-dot-pattern {
+    background-size: 20px 20px;
+    background-image: radial-gradient(hsl(var(--foreground)/0.07) 1px, transparent 1px);
+    background-color: hsl(var(--background));
+    opacity: 1;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-primary/90 to-primary bg-clip-text text-transparent;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+  
+  /* Animated availability indicator */
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Slower pulse animation for spotlight effects */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px -10px rgba(var(--primary-rgb), 0.3);
+    }
+    to {
+      box-shadow: 0 0 20px -5px rgba(var(--primary-rgb), 0.6);
+    }
+  }
+}
