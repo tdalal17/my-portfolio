@@ -1,88 +1,44 @@
-# .github/workflows/deploy.yml
-
-name: Deploy Portfolio to GitHub Pages and AWS S3
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
-  build-for-github:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
+      - uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
           
       - name: Install dependencies
         run: npm install
         
-      - name: Build Next.js site for GitHub Pages
+      - name: Build project
         run: npm run build
-        env:
-          NODE_ENV: production
-          DEPLOY_TARGET: github
         
-      - name: Upload artifact for GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-  
-  build-for-s3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build Next.js site for S3/custom domain
-        run: npm run build
-        env:
-          NODE_ENV: production
-          DEPLOY_TARGET: s3
-        
-      # Configure AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-          
-      # Deploy to AWS S3
-      - name: Deploy to AWS S3
-        run: aws s3 sync ./out s3://tanaydalal.com/ --delete
 
-  deploy-github-pages:
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build-for-github
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
