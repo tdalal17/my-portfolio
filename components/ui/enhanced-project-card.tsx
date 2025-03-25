@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Github, Globe } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { OptimizedImage } from "./optimized-image"
 
 interface EnhancedProjectCardProps {
   title: string
@@ -93,24 +93,21 @@ export function EnhancedProjectCard({
       )}
       
       {/* Project image with overlay */}
-      <div className="relative aspect-video w-full overflow-hidden">
-        <Image
+      <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
+        <OptimizedImage
           src={imageUrl}
           alt={title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={cn(
-            "object-cover transition-transform duration-700",
-            isHovered && !prefersReducedMotion ? "scale-105" : ""
+            "transition-transform duration-300",
+            isHovered ? "scale-110" : "scale-100"
           )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent transition-opacity duration-300" />
-        
-        {/* Project date */}
-        {date && (
-          <div className="absolute top-4 right-4 rounded-full bg-background/90 backdrop-blur-sm px-3 py-1 text-xs font-medium border border-border/30">
-            {date}
-          </div>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
+        <div className="absolute inset-x-0 bottom-0 p-4">
+          <h3 className="text-xl font-bold text-white">{title}</h3>
+        </div>
       </div>
       
       {/* Content */}
@@ -174,4 +171,4 @@ export function EnhancedProjectCard({
       </div>
     </div>
   )
-}
+} 

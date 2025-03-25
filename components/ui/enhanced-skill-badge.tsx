@@ -69,4 +69,4 @@ export function EnhancedSkillBadge({
       )}
     </div>
   )
-}
+} 

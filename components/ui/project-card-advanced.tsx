@@ -94,10 +94,21 @@ export function ProjectCardAdvanced({
           src={imageUrl}
           alt={title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          quality={85}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
           className={cn(
             "object-cover transition-transform duration-500",
             isHovered && !prefersReducedMotion ? "scale-110" : ""
           )}
+          style={{
+            transform: isHovered && !prefersReducedMotion ? 'scale(1.1)' : 'scale(1)',
+            willChange: 'transform',
+            transformOrigin: 'center',
+            backfaceVisibility: 'hidden'
+          }}
         />
         <div className={cn(
           "absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300",

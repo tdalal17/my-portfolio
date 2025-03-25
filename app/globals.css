@@ -3,7 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  /* Base CSS variables */
   :root {
+    --content-width: 100%; /* Base value */
+    --animation-duration: 300ms;
+    
     /* Light Mode Colors - Refined for a cleaner, more polished look */
     --bg-primary: 40 30% 98%;      /* #FDFBF7 (Cleaner white with slight warmth) */
     --bg-secondary: 40 25% 96%;    /* #F9F7F2 (Subtle warm white for cards) */
@@ -49,7 +53,46 @@
     
     /* Font families */
     --font-sans: var(--font-inter);
-    --font-heading: var(--font-sora);
+    
+    /* Light mode specific */
+    --scheme: light;
+  }
+  
+  /* Ensuring consistent sizing between modes */
+  .theme-loading {
+    opacity: 0;
+  }
+  
+  .theme-ready {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+  }
+  
+  /* Force scrollbar to prevent layout shifts when switching themes */
+  html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+  }
+  
+  /* Adjust animation duration for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --animation-duration: 0ms;
+    }
+  }
+  
+  /* Ensure consistent element sizing and spacing in both themes */
+  .dark, .light {
+    --content-width: 100%;
+    color-scheme: var(--scheme, light);
+  }
+  
+  .dark {
+    --scheme: dark;
+  }
+  
+  .light {
+    --scheme: light;
   }
 
   .dark {

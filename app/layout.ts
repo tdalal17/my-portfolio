@@ -1,2 +1,3 @@
 import { metadata } from './metadata'
-export { metadata }
+
+export { metadata } 
