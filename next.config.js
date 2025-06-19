@@ -29,9 +29,9 @@ const nextConfig = {
   },
 
   // GitHub Pages configuration (simplified)
-  basePath: process.env.NODE_ENV === 'production' ? '/my-portfolio-master' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
   trailingSlash: true,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/my-portfolio-master' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
 
   // Build optimizations for speed
   eslint: {
