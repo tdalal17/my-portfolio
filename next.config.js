@@ -25,7 +25,6 @@ const nextConfig = {
 
   // Optimized experimental features
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-aspect-ratio'],
   },
 
