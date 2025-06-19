@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect, useState, useCallback } from "react"
+import React, { useRef, useEffect, useCallback, useState } from "react"
 import { cn } from "@/lib/utils"
 
 interface Particle {
@@ -27,13 +27,13 @@ interface ParticleBackgroundProps {
 
 export function ParticleBackground({
   className,
-  particleCount = 30,
+  particleCount = 20,
   particleColor = "currentColor",
   backgroundColor = "transparent",
   connectParticles = true,
   density = 12000,
   interactive = true,
-  maxSpeed = 0.3,
+  maxSpeed = 0.2,
 }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -54,15 +54,15 @@ export function ParticleBackground({
   // Adjust particle count for reduced motion and mobile
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
   const effectiveParticleCount = 
-    prefersReducedMotion ? Math.min(10, particleCount) : 
-    isMobile ? Math.min(15, particleCount) : 
+    prefersReducedMotion ? Math.min(8, particleCount) :
+    isMobile ? Math.min(12, particleCount) :
     particleCount
   
   // Initialize particles
   const initParticles = useCallback((width: number, height: number) => {
     particles.current = []
     for (let i = 0; i < effectiveParticleCount; i++) {
-      const size = Math.random() * 1.5 + 0.1
+      const size = Math.random() * 1.2 + 0.1
       particles.current.push({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -70,7 +70,7 @@ export function ParticleBackground({
         speedX: (Math.random() - 0.5) * maxSpeed,
         speedY: (Math.random() - 0.5) * maxSpeed,
         color: particleColor,
-        opacity: Math.random() * 0.5 + 0.2,
+        opacity: Math.random() * 0.4 + 0.2,
         connected: false
       })
     }
@@ -87,23 +87,23 @@ export function ParticleBackground({
       if (p.x < 0 || p.x > width) p.speedX *= -1
       if (p.y < 0 || p.y > height) p.speedY *= -1
       
-      // Mouse interaction (only if interactive and not reducing motion)
+      // Mouse interaction (throttled and only if interactive)
       if (interactive && mousePosition.current && !prefersReducedMotion) {
         const dx = p.x - mousePosition.current.x
         const dy = p.y - mousePosition.current.y
         const distance = Math.sqrt(dx * dx + dy * dy)
-        const maxDistance = 120
+        const maxDistance = 100
         
         if (distance < maxDistance) {
           const force = (maxDistance - distance) / maxDistance
-          p.speedX += dx * force * 0.01
-          p.speedY += dy * force * 0.01
+          p.speedX += dx * force * 0.005
+          p.speedY += dy * force * 0.005
           
           // Limit speed
           const currentSpeed = Math.sqrt(p.speedX * p.speedX + p.speedY * p.speedY)
-          if (currentSpeed > maxSpeed * 1.5) {
-            p.speedX = (p.speedX / currentSpeed) * maxSpeed * 1.5
-            p.speedY = (p.speedY / currentSpeed) * maxSpeed * 1.5
+          if (currentSpeed > maxSpeed * 1.2) {
+            p.speedX = (p.speedX / currentSpeed) * maxSpeed * 1.2
+            p.speedY = (p.speedY / currentSpeed) * maxSpeed * 1.2
           }
         }
       }
@@ -123,15 +123,15 @@ export function ParticleBackground({
       ctx.fill()
     })
     
-    // Connect particles if enabled and not too many
-    if (connectParticles && particles.current.length < 100) {
+    // Connect particles if enabled and not too many (performance optimization)
+    if (connectParticles && particles.current.length < 50) {
       // Reset connected state
       particles.current.forEach(p => {
         p.connected = false
       })
       
       // Only connect a limited number of particles to improve performance
-      const connectionLimit = Math.min(particles.current.length, 8)
+      const connectionLimit = Math.min(particles.current.length, 6)
       
       for (let i = 0; i < particles.current.length; i++) {
         let connections = 0
@@ -144,7 +144,7 @@ export function ParticleBackground({
           const distance = Math.sqrt(dx * dx + dy * dy)
           
           // Connect particles that are close enough
-          const maxDistance = Math.min(width * height / density, 150)
+          const maxDistance = Math.min(width * height / density, 120)
           if (distance < maxDistance) {
             connections++
             p1.connected = true
@@ -153,7 +153,7 @@ export function ParticleBackground({
             ctx.moveTo(p1.x, p1.y)
             ctx.lineTo(p2.x, p2.y)
             ctx.strokeStyle = particleColor
-            ctx.globalAlpha = 0.15 * (1 - distance / maxDistance)
+            ctx.globalAlpha = 0.1 * (1 - distance / maxDistance)
             ctx.stroke()
           }
         }
@@ -163,11 +163,11 @@ export function ParticleBackground({
     ctx.globalAlpha = 1
   }, [connectParticles, density, particleColor])
 
-  // Animation loop with throttling
+  // Animation loop with improved throttling
   const animate = useCallback((timestamp: number) => {
     if (!canvasRef.current) return
     
-    // Throttle frame rate
+    // Throttle frame rate more aggressively
     const elapsed = timestamp - lastFrameTime.current
     if (elapsed < frameInterval) {
       animationRef.current = requestAnimationFrame(animate)
@@ -196,7 +196,7 @@ export function ParticleBackground({
       if (!containerRef.current) return
       
       const { offsetWidth, offsetHeight } = containerRef.current
-      const dpr = window.devicePixelRatio || 1
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
       
       // Set canvas dimensions with device pixel ratio for crisp rendering
       setDimensions({
@@ -222,14 +222,14 @@ export function ParticleBackground({
     
     updateDimensions()
     
-    // Throttled resize handler
+    // Debounced resize handler for better performance
     let resizeTimeout: NodeJS.Timeout
     const handleResize = () => {
       clearTimeout(resizeTimeout)
-      resizeTimeout = setTimeout(updateDimensions, 250)
+      resizeTimeout = setTimeout(updateDimensions, 300)
     }
     
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize, { passive: true })
     
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -241,7 +241,7 @@ export function ParticleBackground({
   useEffect(() => {
     if (dimensions.width === 0 || dimensions.height === 0) return
     
-    // If prefers reduced motion, wait longer between animation frames
+    // If prefers reduced motion, use even slower animation
     if (prefersReducedMotion) {
       lastFrameTime.current = 0 
     }
@@ -256,12 +256,12 @@ export function ParticleBackground({
     }
   }, [dimensions, animate, initParticles, prefersReducedMotion])
 
-  // Mouse interaction with throttling
+  // Mouse interaction with improved throttling
   useEffect(() => {
     if (!interactive || !containerRef.current) return
     
     let throttleTimeout: NodeJS.Timeout | null = null
-    const throttleDelay = 16
+    const throttleDelay = 32 // Increased throttle delay (30fps)
     
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current || throttleTimeout) return
@@ -286,13 +286,16 @@ export function ParticleBackground({
       }
     }
     
-    containerRef.current.addEventListener('mousemove', handleMouseMove)
-    containerRef.current.addEventListener('mouseleave', handleMouseLeave)
+    const element = containerRef.current
+    if (!element) return // Add null check for element
+    
+    element.addEventListener('mousemove', handleMouseMove, { passive: true })
+    element.addEventListener('mouseleave', handleMouseLeave, { passive: true })
     
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('mousemove', handleMouseMove)
-        containerRef.current.removeEventListener('mouseleave', handleMouseLeave)
+      if (element) { // Add null check in cleanup
+        element.removeEventListener('mousemove', handleMouseMove)
+        element.removeEventListener('mouseleave', handleMouseLeave)
       }
       if (throttleTimeout) {
         clearTimeout(throttleTimeout)
@@ -300,19 +303,26 @@ export function ParticleBackground({
     }
   }, [interactive])
 
-  // For reduced motion, use very slow animations
-  const effectiveMaxSpeed = prefersReducedMotion ? 0.05 : maxSpeed
+  // Don't render on mobile to save performance
+  if (isMobile && !prefersReducedMotion) {
+    return null
+  }
 
   return (
     <div 
       ref={containerRef}
-      className={cn("relative w-full h-full overflow-hidden", className)}
+      className={cn("fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10", className)}
       style={{ backgroundColor }}
+      aria-hidden="true"
     >
       <canvas 
         ref={canvasRef}
-        className="absolute inset-0"
-        aria-hidden="true"
+        className="absolute inset-0 w-full h-full"
+        style={{ 
+          willChange: 'auto',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)'
+        }}
       />
     </div>
   )

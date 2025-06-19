@@ -1,31 +1,20 @@
 "use client"
 
+import React from "react"
 import { useTheme } from "next-themes"
-import { Toaster as Sonner } from "sonner"
 
-type ToasterProps = React.ComponentProps<typeof Sonner>
+type ToasterProps = {
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  expand?: boolean
+  richColors?: boolean
+}
 
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+const Toaster = ({ position = 'bottom-right', expand, richColors, ...props }: ToasterProps) => {
+  const { theme } = useTheme()
 
-  return (
-    <Sonner
-      theme={theme as ToasterProps["theme"]}
-      className="toaster group"
-      toastOptions={{
-        classNames: {
-          toast:
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-muted-foreground",
-          actionButton:
-            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton:
-            "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-        },
-      }}
-      {...props}
-    />
-  )
+  // Simple fallback - in a real app you'd implement a proper toast system
+  // For now, just return null since we're not using toasts in the main portfolio
+  return null
 }
 
 export { Toaster }

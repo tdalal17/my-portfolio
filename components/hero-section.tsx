@@ -16,6 +16,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ name, title, description, profileImage }: HeroSectionProps) {
   const [imgError, setImgError] = useState(false)
+  const [imgLoaded, setImgLoaded] = useState(false)
   
   return (
     <section 
@@ -86,11 +87,20 @@ export function HeroSection({ name, title, description, profileImage }: HeroSect
                     <Image
                       src={profileImage}
                       alt={`${name}'s profile photo`}
-                      fill
+                      width={400}
+                      height={400}
                       priority
-                      sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover"
+                      quality={85}
+                      sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 400px"
+                      className={`object-cover transition-all duration-500 ${
+                        imgLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
+                      }`}
+                      onLoad={() => {
+                        setImgLoaded(true)
+                      }}
                       onError={() => setImgError(true)}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R+Cp5c8dZPQ="
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#B46E3C]/10 text-[#B46E3C] font-bold text-3xl">

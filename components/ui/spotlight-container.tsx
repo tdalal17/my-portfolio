@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import { cn } from '@/lib/utils'
 
 interface SpotlightContainerProps {
@@ -28,27 +28,48 @@ export function SpotlightContainer({
 }: SpotlightContainerProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
+  const throttleRef = useRef<NodeJS.Timeout | null>(null)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    setMousePosition({ x, y })
-  }
+  // Throttled mouse move handler for better performance
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (throttleRef.current) return
+    
+    throttleRef.current = setTimeout(() => {
+      if (!e.currentTarget) {
+        throttleRef.current = null
+        return
+      }
+      
+      const rect = e.currentTarget.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      setMousePosition({ x, y })
+      throttleRef.current = null
+    }, 16) // Throttle to ~60fps
+  }, [])
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setIsHovering(true)
-  }
+  }, [])
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setIsHovering(false)
-  }
+    if (throttleRef.current) {
+      clearTimeout(throttleRef.current)
+      throttleRef.current = null
+    }
+  }, [])
+
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = typeof window !== 'undefined' 
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+    : false
 
   return (
     <div 
       className={cn(
         "relative overflow-hidden p-4 transition-all duration-300",
-        isHovering ? "shadow-xl transform scale-[1.03] border-primary/10 border" : "",
+        !prefersReducedMotion && isHovering ? "shadow-xl transform scale-[1.03] border-primary/10 border" : "",
         borderRadius,
         shadow,
         hoverShadow,
@@ -59,29 +80,37 @@ export function SpotlightContainer({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div 
-        className={cn(
-          "absolute inset-0 pointer-events-none transition-opacity duration-300",
-          isHovering ? "opacity-100" : "opacity-0"
-        )}
-        style={{
-          background: `radial-gradient(${spotlightSize}px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(${spotlightColor}, ${spotlightOpacity}), transparent 35%)`
-        }}
-      />
-      
-      {isHovering && (
-        <div 
-          className="absolute w-48 h-48 rounded-full pointer-events-none animate-pulse-slow"
-          style={{
-            left: `${mousePosition.x - 40}px`,
-            top: `${mousePosition.y - 40}px`,
-            background: `radial-gradient(circle, rgba(${spotlightColor}, 0.25), transparent 70%)`,
-            transform: 'translate(-50%, -50%)'
-          }}
-        />
+      {/* Only render spotlight effects if not reducing motion */}
+      {!prefersReducedMotion && (
+        <>
+          <div 
+            className={cn(
+              "absolute inset-0 pointer-events-none transition-opacity duration-300",
+              isHovering ? "opacity-100" : "opacity-0"
+            )}
+            style={{
+              background: `radial-gradient(${spotlightSize}px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(${spotlightColor}, ${spotlightOpacity}), transparent 35%)`
+            }}
+          />
+          
+          {isHovering && (
+            <div 
+              className="absolute w-48 h-48 rounded-full pointer-events-none animate-pulse-slow"
+              style={{
+                left: `${mousePosition.x - 40}px`,
+                top: `${mousePosition.y - 40}px`,
+                background: `radial-gradient(circle, rgba(${spotlightColor}, 0.25), transparent 70%)`,
+                transform: 'translate(-50%, -50%)'
+              }}
+            />
+          )}
+        </>
       )}
       
-      <div className={cn("relative", isHovering ? "scale-[1.01] transition-transform duration-300" : "")}>
+      <div className={cn(
+        "relative",
+        !prefersReducedMotion && isHovering ? "scale-[1.01] transition-transform duration-300" : ""
+      )}>
         {children}
       </div>
     </div>

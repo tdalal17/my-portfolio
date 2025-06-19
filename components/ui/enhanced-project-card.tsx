@@ -107,7 +107,7 @@ export function EnhancedProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
         <div className="absolute inset-x-0 bottom-0 p-4">
           <h3 className="text-xl font-bold text-white">{title}</h3>
-        </div>
+          </div>
       </div>
       
       {/* Content */}

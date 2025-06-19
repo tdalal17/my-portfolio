@@ -1,12 +1,12 @@
 # .github/workflows/deploy.yml
 
-name: Deploy Portfolio to GitHub Pages and AWS S3
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, main ]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -17,72 +17,55 @@ permissions:
 # Allow only one concurrent deployment
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build-for-github:
+  build:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build Next.js site for GitHub Pages
-        run: npm run build
-        env:
-          NODE_ENV: production
-          DEPLOY_TARGET: github
-        
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-  
-  build-for-s3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Build Next.js site for S3/custom domain
-        run: npm run build
-        env:
-          NODE_ENV: production
-          DEPLOY_TARGET: s3
-        
-      # Configure AWS Credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-          
-      # Deploy to AWS S3
-      - name: Deploy to AWS S3
-        run: aws s3 sync ./out s3://tanaydalal.com/ --delete
+    - name: Checkout
+      uses: actions/checkout@v4
 
-  deploy-github-pages:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      with:
+        static_site_generator: next
+
+    - name: Restore cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          .next/cache
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+
+    - name: Install dependencies
+      run: npm ci --prefer-offline --no-audit
+
+    - name: Build with Next.js
+      run: npm run build
+      env:
+        NODE_ENV: production
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./out
+
+  deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build-for-github
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

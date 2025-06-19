@@ -46,15 +46,15 @@ export function Navbar() {
         <nav className="hidden gap-8 md:flex">
           {routes.map((route) => (
             <div key={route.href} className="relative h-16 flex items-center">
-              <Link
-                href={route.href}
-                className={cn(
+            <Link
+              href={route.href}
+              className={cn(
                   "text-sm font-medium transition-colors hover:text-[#B46E3C]",
                   pathname === route.href
                     ? "text-[#B46E3C]" 
-                    : "text-muted-foreground"
-                )}
-              >
+                  : "text-muted-foreground"
+              )}
+            >
                 {route.label}
               </Link>
               {pathname === route.href && (

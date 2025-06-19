@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React from "react"
 import { Inter, Sora } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "../components/theme-provider"
@@ -13,7 +13,6 @@ const inter = Inter({
   display: "swap",
   preload: true,
   fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-  adjustFontFallback: true,
 })
 
 const sora = Sora({ 
@@ -22,7 +21,6 @@ const sora = Sora({
   display: "swap",
   preload: true,
   fallback: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-  adjustFontFallback: true,
 })
 
 export default function RootLayout({
@@ -30,26 +28,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // Register service worker for caching
-  useEffect(() => {
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      window.addEventListener('load', () => {
-        const basePath = window.location.hostname.includes('github.io') ? '/my-portfolio' : ''
-        navigator.serviceWorker.register(`${basePath}/sw.js`)
-          .then(registration => {
-            console.log('SW registered: ', registration)
-          })
-          .catch(error => {
-            console.log('SW registration failed: ', error)
-          })
-      })
-    }
-  }, [])
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
           rel="preload" 
@@ -57,8 +41,6 @@ export default function RootLayout({
           as="image"
           fetchPriority="high"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
       </head>
       <body 
         className={`${inter.variable} ${sora.variable} font-sans antialiased selection:bg-[#B46E3C]/20 selection:text-[#B46E3C]`}
@@ -66,8 +48,8 @@ export default function RootLayout({
         <ThemeProvider 
           attribute="class" 
           defaultTheme="dark" 
-          enableSystem 
-          disableTransitionOnChange={false}
+          enableSystem={false}
+          disableTransitionOnChange={true}
           storageKey="tanay-portfolio-theme"
         >
           <div className="flex min-h-screen flex-col">
