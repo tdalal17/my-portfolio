@@ -27,14 +27,11 @@ jobs:
     - name: Install dependencies
       run: npm ci --prefer-offline --no-audit
 
-    - name: Build for AWS
+    - name: Build and export static files
       run: npm run build
       env:
         NODE_ENV: production
         NEXT_PUBLIC_BASE_PATH: ""
-
-    - name: Export static files
-      run: npm run export
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v2

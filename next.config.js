@@ -28,10 +28,8 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-aspect-ratio'],
   },
 
-  // GitHub Pages configuration (simplified)
-  basePath: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
+  // AWS S3 configuration (no basePath needed for custom domain)
   trailingSlash: true,
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/my-portfolio' : '',
 
   // Build optimizations for speed
   eslint: {
