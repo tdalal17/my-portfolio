@@ -42,14 +42,28 @@ jobs:
 
     - name: Debug local vs S3
       run: |
+        echo "🔍 Environment Variables:"
+        echo "AWS_REGION: ${{ env.AWS_REGION }}"
+        echo "S3_BUCKET: '${{ env.S3_BUCKET }}'"
+        echo "CLOUDFRONT_DISTRIBUTION_ID: '${{ env.CLOUDFRONT_DISTRIBUTION_ID }}'"
+        echo ""
         echo "📁 Contents of ./out/ directory:"
         ls -la ./out/ || echo "❌ ./out/ directory not found"
         echo ""
-        echo "📊 S3 bucket contents:"
-        aws s3 ls s3://${{ env.S3_BUCKET }}/ --recursive || echo "❌ Cannot list S3 bucket"
+        if [ -n "${{ env.S3_BUCKET }}" ]; then
+          echo "📊 S3 bucket contents:"
+          aws s3 ls s3://${{ env.S3_BUCKET }}/ --recursive || echo "❌ Cannot list S3 bucket"
+        else
+          echo "❌ S3_BUCKET environment variable is empty!"
+        fi
 
     - name: Deploy to S3
       run: |
+        if [ -z "${{ env.S3_BUCKET }}" ]; then
+          echo "❌ Error: S3_BUCKET is not set. Please check your GitHub repository secrets."
+          exit 1
+        fi
+        echo "🚀 Deploying to S3 bucket: ${{ env.S3_BUCKET }}"
         aws s3 sync ./out s3://${{ env.S3_BUCKET }} --delete --cache-control "public, max-age=31536000, immutable" --exclude "*.html"
         aws s3 sync ./out s3://${{ env.S3_BUCKET }} --delete --cache-control "public, max-age=0, must-revalidate" --include "*.html"
         
