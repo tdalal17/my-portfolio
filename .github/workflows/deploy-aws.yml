@@ -33,12 +33,23 @@ jobs:
         NODE_ENV: production
         NEXT_PUBLIC_BASE_PATH: ""
 
+    - name: Export static files
+      run: npm run export
+
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+
+    - name: Debug local vs S3
+      run: |
+        echo "📁 Contents of ./out/ directory:"
+        ls -la ./out/ || echo "❌ ./out/ directory not found"
+        echo ""
+        echo "📊 S3 bucket contents:"
+        aws s3 ls s3://${{ env.S3_BUCKET }}/ --recursive || echo "❌ Cannot list S3 bucket"
 
     - name: Deploy to S3
       run: |
