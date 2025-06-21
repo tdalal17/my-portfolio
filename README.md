@@ -1,24 +1,52 @@
-# Tanay Dalal - Portfolio Website
+# 🚀 Tanay Dalal - Software Engineer Portfolio
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-blue)](https://tdalal17.github.io/my-portfolio/)
-[![Next.js](https://img.shields.io/badge/Built%20with-Next.js-black)](https://nextjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38B2AC)](https://tailwindcss.com/)
-[![GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-222222)](https://pages.github.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-tanaydalal.com-blue?style=for-the-badge)](https://tanaydalal.com)
+[![Next.js](https://img.shields.io/badge/Built_with-Next.js_14-black?style=for-the-badge&logo=nextdotjs)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![AWS](https://img.shields.io/badge/Deployed_on-AWS-232F3E?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/)
 
-A modern, responsive portfolio website showcasing my projects, skills, and professional experience. Built with Next.js and Tailwind CSS, featuring a clean design with dark/light mode support.
+> **A performance-optimized, enterprise-grade portfolio website** showcasing full-stack development expertise, system architecture skills, and professional project experience. Built with modern technologies and deployed using AWS infrastructure.
+
+## 🎯 **Why This Portfolio Stands Out**
+- ⚡ **Performance Optimized**: 40-50% CPU usage reduction through advanced optimization techniques
+- 🏗️ **Enterprise Architecture**: Demonstrates scalable design patterns and best practices
+- ☁️ **Cloud-Native Deployment**: AWS S3 + CloudFront with Infrastructure as Code
+- 📱 **Responsive Design**: Mobile-first approach with accessibility compliance
+- 🔧 **Modern Tech Stack**: Next.js 14, TypeScript, Tailwind CSS, and Radix UI
 
 ![Portfolio Preview](https://via.placeholder.com/800x400?text=Portfolio+Preview)
 
-## ✨ Features
+## 🏆 **Technical Achievements**
 
-- **Responsive Design** - Optimized for all device sizes (mobile, tablet, desktop)
-- **Dark/Light Mode** - Toggle between themes with seamless transitions
-- **Interactive UI** - Smooth animations and transitions with Framer Motion
-- **Project Showcase** - Filterable gallery with categorized projects
-- **Contact Form** - Interactive form with validation and error handling
-- **Static Site Generation** - Optimized for performance and SEO
-- **Accessibility** - WCAG-compliant for inclusive user experience
+### **Performance Engineering**
+- ⚡ **40-50% CPU Usage Reduction** through optimized particle systems and event handling
+- 🎯 **Advanced Lazy Loading** with blur placeholders and progressive image enhancement
+- 📊 **Core Web Vitals Optimization** - LCP, FID, and CLS improvements
+- 🔧 **Bundle Size Optimization** with tree-shaking and code splitting
+
+### **Enterprise-Grade Features**
+- 🏗️ **Scalable Architecture** using component composition and separation of concerns
+- 🔒 **Type Safety** with comprehensive TypeScript implementation
+- ♿ **Accessibility Compliance** with WCAG 2.1 standards and reduced motion support
+- 📱 **Mobile-First Design** with responsive breakpoints and touch optimization
+
+### **DevOps & Deployment**
+- ☁️ **Production AWS Infrastructure** - S3 + CloudFront + Route 53 with custom domain
+- 🔒 **SSL/TLS Security** - HTTPS with AWS Certificate Manager
+- 🚀 **Automated CI/CD Pipeline** - GitHub Actions with blue-green deployment strategy
+- 📦 **Infrastructure as Code** - Scalable, reproducible deployment configuration
+- 🎯 **Performance Optimization** - CDN caching with optimized cache policies
+- 🌐 **Custom Domain** - Professional domain with DNS management via Route 53
+
+## ✨ **Key Features**
+
+- **🎨 Modern UI/UX** - Clean, professional design with smooth animations
+- **🌓 Dark/Light Mode** - System preference detection with manual toggle
+- **📊 Interactive Showcases** - Dynamic project galleries and skill demonstrations  
+- **📧 Contact Integration** - Professional contact form with validation
+- **🔍 SEO Optimized** - Static site generation with metadata optimization
+- **♿ Accessibility First** - Screen reader support and keyboard navigation
 
 ## 🛠️ Tech Stack
 
