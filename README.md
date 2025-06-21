@@ -137,3 +137,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 Made with ❤️ by Tanay Dalal
+
+🚀 **Deployment Status**: AWS Infrastructure Ready
