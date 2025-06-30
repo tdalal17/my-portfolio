@@ -43,7 +43,7 @@ export default function HomePage() {
         name="Tanay Dalal"
         title="Software Engineer & Cloud Developer"
         description="I'm a software engineer specializing in cloud engineering and full-stack development. I build scalable solutions and create engaging user experiences."
-        profileImage="/Tanay-prfile.jpg"
+        profileImage="/Tanay-prfile.webp"
       />
       
       <ParticleBackground />

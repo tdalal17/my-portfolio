@@ -37,7 +37,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
           rel="preload" 
-          href="/assets/hero-image.jpg" 
+          href="/assets/hero-image.webp" 
           as="image"
           fetchPriority="high"
         />

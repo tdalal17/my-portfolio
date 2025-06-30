@@ -15,7 +15,7 @@ export default function AboutPage() {
   useEffect(() => {
     // Set the image path based on environment
     const basePath = window.location.hostname.includes('github.io') ? '/my-portfolio' : ''
-    setImgSrc(`${basePath}/Tanay-prfile.jpg`)
+    setImgSrc(`${basePath}/Tanay-prfile.webp`)
   }, [])
   
   const handleImageError = () => {

@@ -16,7 +16,7 @@ const projects: Project[] = [
     title: "Data Integration Platform",
     description: "Led a 5-person Scrum team using Jira for sprint planning and backlog grooming, achieving 95% sprint velocity and delivering features on time across 6 sprints. Architected microservices using Spring Boot and domain-driven design.",
     tags: ["Java", "Spring Boot", "RESTful APIs", "Git/GitHub", "Jenkins", "Oracle SQL"],
-    imageUrl: "/assets/projects/data-integration.jpg",
+    imageUrl: "/assets/projects/data-integration.webp",
     projectUrl: "/projects/data-integration",
     featured: true,
     date: "March 2024"
