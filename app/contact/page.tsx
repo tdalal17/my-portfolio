@@ -72,10 +72,10 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Email</h3>
                   <Link 
-                    href="mailto:dalaltanay7@gmail.com" 
-                    className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group/link"
-                  >
-                    dalaltanay7@gmail.com
+                     href="mailto:tdalal@vt.edu" 
+                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group/link"
+                    >
+                      tdalal@vt.edu
                     <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
                   </Link>
                 </div>
@@ -98,12 +98,12 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-lg mb-1">LinkedIn</h3>
                   <Link 
-                    href="https://www.linkedin.com/in/tanaydalal7" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group/link"
-                  >
-                    linkedin.com/in/tanaydalal7
+                     href="https://linkedin.com/in/tanay-dalal" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group/link"
+                    >
+                      linkedin.com/in/tanay-dalal
                     <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all" />
                   </Link>
                 </div>
@@ -241,4 +241,3 @@ export default function ContactPage() {
     </PageBackground>
   )
 }
-

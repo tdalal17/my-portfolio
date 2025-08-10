@@ -1,11 +1,13 @@
-"use client"
-
 import React from "react"
 import { Inter, Sora } from "next/font/google"
 import "./globals.css"
-import { ThemeProvider } from "../components/theme-provider"
-import { Navbar } from "../components/navbar"
-import { Footer } from "../components/footer"
+import { ClientLayout } from "./client-layout"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Tanay Dalal | Software Engineer & Cloud Enthusiast",
+  description: "Personal portfolio of Tanay Dalal, Software Engineer and Cloud Enthusiast",
+}
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -37,27 +39,18 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
           rel="preload" 
-          href="/assets/hero-image.webp" 
+          href="/Tanay-prfile.webp" 
           as="image"
           fetchPriority="high"
         />
+
       </head>
       <body 
         className={`${inter.variable} ${sora.variable} font-sans antialiased selection:bg-[#B46E3C]/20 selection:text-[#B46E3C]`}
       >
-        <ThemeProvider 
-          attribute="class" 
-          defaultTheme="dark" 
-          enableSystem={false}
-          disableTransitionOnChange={true}
-          storageKey="tanay-portfolio-theme"
-        >
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   )

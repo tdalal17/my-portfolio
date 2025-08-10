@@ -53,6 +53,7 @@
     
     /* Font families */
     --font-sans: var(--font-inter);
+    --font-heading: var(--font-sora);
     
     /* Light mode specific */
     --scheme: light;
