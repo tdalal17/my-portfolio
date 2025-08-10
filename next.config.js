@@ -1,16 +1,21 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+// Make bundle analyzer optional in CI environments
+const withBundleAnalyzer = (() => {
+  try {
+    return require('@next/bundle-analyzer')({ enabled: process.env.ANALYZE === 'true' })
+  } catch {
+    return (config) => config
+  }
+})()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  
+
   images: {
     unoptimized: true,
     domains: ['images.unsplash.com'],
-    remotePatterns: [ { protocol: 'https', hostname: '**' } ],
+    remotePatterns: [{ protocol: 'https', hostname: '**' }],
   },
 
   swcMinify: true,
