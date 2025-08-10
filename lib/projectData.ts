@@ -12,6 +12,16 @@ export interface Project {
 export function getProjects(): Project[] {
   return [
     {
+      id: "cs-database-project",
+      title: "Global Computer Solutions (GCS) Database Project",
+      description: "Fully normalized SQL Server database for a consulting firm: employees, skills, projects, tasks, time tracking, and billing; designed to 3NF with referential integrity and reporting.",
+      tags: ["SQL Server", "Database Design", "3NF", "ERD", "Reporting"],
+      imageUrl: "https://opengraph.githubassets.com/1/tdalal17/cs-database-project",
+      projectUrl: "https://github.com/tdalal17/cs-database-project",
+      featured: true,
+      date: "Aug 2025"
+    },
+    {
       id: "data-integration",
       title: "Data Integration Platform",
       description: "Led a 5-person Scrum team using Jira for sprint planning and backlog grooming, achieving 95% sprint velocity and delivering features on time across 6 sprints. Architected microservices using Spring Boot and domain-driven design.",
